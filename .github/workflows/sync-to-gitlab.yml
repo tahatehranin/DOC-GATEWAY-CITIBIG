@@ -1,0 +1,30 @@
+name: Mirror to GitLab (hamgit.ir)
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push mirror to hamgit.ir
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          set -e
+          if [ -z "$GITLAB_TOKEN" ]; then
+            echo "::error::Secret GITLAB_TOKEN is not set — Repository Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG.git"
+          git config http.version HTTP/1.1
+          git push gitlab --all --force
+          git push gitlab --tags --force

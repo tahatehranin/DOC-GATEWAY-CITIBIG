@@ -1,0 +1,13 @@
+# CITIBIG Docs Portal — پورت میزبان با DOCS_PORT قابل تغییر است (پیش‌فرض 3100)
+name: doc-gateway-citibig
+
+services:
+  citibig-docs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: citibig-docs:latest
+    container_name: citibig-docs
+    restart: unless-stopped
+    ports:
+      - "${DOCS_PORT:-3100}:80"
