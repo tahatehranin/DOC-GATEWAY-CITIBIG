@@ -82,10 +82,12 @@ Workflow ی `sync-to-gitlab.yml` روی هر پوش (همهٔ برنچ‌ها ی
 **یک‌بار تنظیم لازم (الزامی):**
 
 1. در GitHub به `Settings → Secrets and variables → Actions` بروید و **New repository secret** بزنید.
-2. Name: `GITLAB_TOKEN` — Value: توکن شخصی hamgit.ir (همان `glpat-…` در اختیار شما).
+2. Name: `GITLAB_TOKEN` — Value: توکن دسترسی مخزن hamgit.ir (توکنِ سطحِ همین پروژه کافی است — تست شده).
 3. بعد از آن، هر پوش به GitHub خودکار به GitLab هم پوش می‌شود. اجرای دستی: تب **Actions → Mirror to GitLab (hamgit.ir) → Run workflow**.
 
-> ⚠️ توکن در هیچ فایلی ذخیره نمی‌شود و فقط از `secrets.GITLAB_TOKEN` خوانده می‌شود. برای امنیت بیشتر، چون توکن فعلی در چت اشتراک شده، پیشنهاد می‌شود توکن جدیدی با محدودهٔ `write_repository` در hamgit.ir بسازید و همان را در Secrets بگذارید.
+> توکن در هیچ فایلی ذخیره نمی‌شود و فقط از `secrets.GITLAB_TOKEN` خوانده می‌شود. توکن روی HTTPS کار می‌کند؛ آدرس SSH (`git@hamgit.ir:…`) به خود توکن کار نمی‌کند.
+
+**مسیر جایگزین (اگر روزی HTTPS ایراد گرفت):** در hamgit.ir یک **Deploy Key** با دسترسی write بسازید (Settings → Repository → Deploy keys) و کلید **خصوصی** آن را به‌عنوان secret با نام `GITLAB_SSH_KEY` در GitHub ذخیره کنید — workflow به‌صورت خودکار از آدرس SSH استفاده می‌کند.
 
 ## ۵. افزودن مستند جدید
 

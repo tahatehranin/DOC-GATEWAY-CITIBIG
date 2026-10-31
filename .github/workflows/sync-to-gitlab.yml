@@ -18,13 +18,39 @@ jobs:
       - name: Push mirror to hamgit.ir
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
         run: |
           set -e
-          if [ -z "$GITLAB_TOKEN" ]; then
-            echo "::error::Secret GITLAB_TOKEN is not set — Repository Settings → Secrets and variables → Actions → New repository secret"
+
+          GITLAB_URL_HTTPS="https://oauth2:${GITLAB_TOKEN}@hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG.git"
+          GITLAB_URL_SSH="git@hamgit.ir:tahavey18/DOC-GATEWAY-CITIBIG.git"
+
+          if [ -n "$GITLAB_SSH_KEY" ]; then
+            echo ">> Mirror over SSH (Deploy Key)"
+            mkdir -p ~/.ssh
+            printf '%s\n' "$GITLAB_SSH_KEY" > ~/.ssh/id_gitlab_mirror
+            chmod 600 ~/.ssh/id_gitlab_mirror
+            ssh-keyscan -t ed25519,rsa hamgit.ir >> ~/.ssh/known_hosts 2>/dev/null
+            {
+              echo "Host hamgit.ir"
+              echo "  User git"
+              echo "  IdentityFile ~/.ssh/id_gitlab_mirror"
+              echo "  IdentitiesOnly yes"
+            } > ~/.ssh/config
+            chmod 600 ~/.ssh/config
+            git remote add gitlab "$GITLAB_URL_SSH"
+          elif [ -n "$GITLAB_TOKEN" ]; then
+            echo ">> Mirror over HTTPS (repository access token)"
+            git remote add gitlab "$GITLAB_URL_HTTPS"
+            git config http.version HTTP/1.1
+          else
+            echo "::error::Secret GITLAB_TOKEN (or GITLAB_SSH_KEY) is not set. Add it in: Repository Settings -> Secrets and variables -> Actions -> New repository secret."
             exit 1
           fi
-          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG.git"
-          git config http.version HTTP/1.1
-          git push gitlab --all --force
+
+          if ! git push gitlab --all --force; then
+            echo "::error::HTTPS mirror failed. Check: (1) token belongs to THIS project (hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG), (2) token scope includes write_repository, (3) token is not expired."
+            echo "::error::Alternative: create a Deploy Key with write access in hamgit.ir (Settings -> Repository -> Deploy keys), save the PRIVATE key as secret GITLAB_SSH_KEY and re-run this workflow."
+            exit 1
+          fi
           git push gitlab --tags --force
