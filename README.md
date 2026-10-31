@@ -1,103 +1,111 @@
-# DOC-GATEWAY-CITIBIG — پورتال مستندات دروازه سرویس CITIBIG
+<div align="center">
 
-مستندات رسمی و پورتال نمایش **CITIBIG API** — پلتفرم یکپارچهٔ سرویس‌های داده و استعلام — شامل کاتالوگ کامل سرویس‌ها، UI شرکتی (روشن/شب)، لوگو، صفحهٔ اول، حق کپی‌رایت و لایسنس GPL-3.0.
+<img src="MDDOCS/docs/assets/img/logo.png" alt="CITIBIG" width="340"/>
 
-- **مخزن GitHub:** https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG — نگهداری توسط تیم tahavey18
-- **مخزن GitLab (hamgit.ir):** https://hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG
-- **لایسنس:** [GPL-3.0](LICENSE) · © ۲۰۲۶ CITIBIG — تمام حقوق محفوظ است.
+# DOC-GATEWAY-CITIBIG
+
+**CITIBIG API** documentation portal — corporate docs built with MkDocs Material (RTL, dark/light), shipped as a Docker image, mirrored to GitLab and released automatically.
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/tahatehranin/DOC-GATEWAY-CITIBIG?logo=github)](https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG/releases)
+[![Release CI](https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG/actions/workflows/release.yml/badge.svg)](https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG/actions/workflows/release.yml)
+[![Mirror CI](https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG/actions/workflows/sync-to-gitlab.yml/badge.svg)](https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG/actions/workflows/sync-to-gitlab.yml)
+[![Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?logo=materialformkdocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](#run-locally-with-docker)
+
+**English** | [فارسی](README.FA.md)
+
+</div>
 
 ---
 
-## ۱. ساختار پروژه
+## About
+
+This repository holds the **official documentation portal of CITIBIG API** — a unified API platform for identity, banking, bills, telecom, vehicle, business, location and media services.
+
+- Customer-facing docs: **9 service families, 130+ endpoints**
+- Formal Persian (RTL) with an English-friendly code layout
+- Corporate theme (navy/crimson palette, Vazirmatn font, bundled locally)
+- Strict build (`mkdocs build --strict`) — broken links fail the build
+- Multi-stage Docker image (build → nginx) with an editable host port
+
+## Documentation structure
 
 ```
-DOC-GATEWAY-CITIBIG/
-├── MDDOCS/                  ← پروژهٔ MkDocs Material
-│   ├── mkdocs.yml           ← کانفیگ (RTL فارسی، تم شرکتی، nav)
-│   ├── docs/                ← تک‌تک مستندات (Markdown)
-│   │   ├── index.md               ← صفحهٔ اول: کاور، ویژگی‌ها، کپی‌رایت
-│   │   ├── getting-started.md     ← شروع سریع
-│   │   ├── authentication.md      ← احراز هویت
-│   │   ├── errors.md              ← کدهای پاسخ و خطا
-│   │   ├── license.md             ← حق نشر و لایسنس (کوتاه)
-│   │   └── services/              ← مرجع ۹ خانوادهٔ سرویس
-│   │       ├── identity.md / banking.md / bills.md
-│   │       ├── telecom.md / vehicle.md / business.md
-│   │       └── location.md / media.md / tools.md
-│   ├── docs/assets/         ← لوگو + فونت وزیرمتن (کاملاً آفلاین)
-│   └── docs/stylesheets/    ← استایل شرکتی (extra.css)
-├── deploy/nginx.conf        ← کانفیگ nginx کانتینر (charset utf-8 + healthz)
-├── Dockerfile               ← بیلد دو مرحله‌ای (mkdocs --strict → nginx)
-├── docker-compose.yml       ← با DOCS_PORT قابل‌تنظیم (پیش‌فرض 3100)
-├── .env.example             ← نمونهٔ تنظیمات
-├── .github/workflows/sync-to-gitlab.yml  ← سینک خودکار به hamgit.ir
-└── LICENSE                  ← GNU General Public License v3.0
+MDDOCS/
+├── mkdocs.yml            # MkDocs Material config (RTL, corporate theme, nav)
+└── docs/
+    ├── index.md            # Home: cover, features, copyright
+    ├── getting-started.md  # Quick start (curl / Python / Node.js tabs)
+    ├── authentication.md   # API key authentication
+    ├── errors.md           # Response & error codes
+    ├── license.md          # Copyright & license (short)
+    └── services/           # Developer reference (9 families)
+        ├── identity.md   banking.md   bills.md
+        ├── telecom.md    vehicle.md   business.md
+        └── location.md   media.md     tools.md
 ```
 
-## ۲. اجرای محلی با داکر
+## Run locally with Docker
 
 ```bash
-cp .env.example .env          # اختیاری — پورت پیش‌فرض 3100
+cp .env.example .env          # optional — default host port is 3100
 docker compose up -d --build
 # → http://localhost:3100
 ```
 
-تغییر پورت به 3101 (یا هر پورت دیگر):
+Change the host port: `DOCS_PORT=3101 docker compose up -d`
 
-```bash
-DOCS_PORT=3101 docker compose up -d
-```
-
-پیش‌نمایش محلی بدون داکر (رندر زندهٔ MkDocs Material):
+## Local preview (no Docker)
 
 ```bash
 python -m pip install "mkdocs-material~=9.5"
-python -m mkdocs serve          # از داخل پوشهٔ MDDOCS
+python -m mkdocs serve        # from the MDDOCS directory
 # → http://localhost:8000
 ```
 
-> بیلد نهایی با `python -m mkdocs build --strict` انجام می‌شود؛ در حالت strict هر لینک شکسته یا هشدار مارک‌داون بیلد را متوقف می‌کند — یعنی مستندات همیشه سالم بیلد می‌شوند.
+## Deploy on Dokploy
 
-## 3. استقرار در Dokploy (از روی مخزن GitLab)
+1. Create a **Compose** service pointing at this repository (GitHub or the GitLab mirror).
+2. Dokploy detects `docker-compose.yml`; the container port is **80**.
+3. Host port via the `DOCS_PORT` env var (default **3100**, changeable to 3101 etc.).
+4. Health check: `GET /healthz` (always returns `ok`).
 
-Dokploy از روی همین مخزن ایمیج را می‌سازد و اجرا می‌کند.
+## Automated releases
 
-**روش پیشنهادی — Docker Compose:**
-1. در Dokploy یک سرویس از نوع **Compose** بسازید و مخزن `hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG` را وصل کنید.
-2. Dokploy خودش `docker-compose.yml` را تشخیص می‌دهد.
-3. پورت میزبان را در Dokploy (تب Network → Host Port) یا با متغیر محیطی `DOCS_PORT` تنظیم کنید — پیش‌فرض 3100؛ 3101 هم می‌شود.
-4. Domain: پورت کانتینر `80` را مپ کنید.
+Releases follow [Semantic Versioning](https://semver.org) with `vX.Y.Z` tags.
 
-**روش دوم — Application (Dockerfile):**
-1. سرویس از نوع **Application** با Build Type = Dockerfile.
-2. Dockerfile Path = `./Dockerfile` و **Container Port = 80**.
-3. پورت بیرونی هر عددی (3100/3101/…) در UI داکپولی.
+| Step | Action |
+|---|---|
+| 1 | Bump the `VERSION` file (e.g. `1.0.1`) and push to `main` |
+| 2 | `release.yml` creates tag `v1.0.1` + a GitHub Release with auto-generated notes |
+| 3 | Or run **Actions → Release → Run workflow** and type the version manually |
 
-> سلامت سرویس: `GET /healthz` همیشه `ok` برمی‌گرداند — به‌عنوان Health Check در داکپولی قابل ثبت است.
+The release job is idempotent — it skips when the tag already exists.
 
-## ۴. سینک خودکار GitHub → hamgit.ir
+## GitLab mirror (hamgit.ir)
 
-Workflow ی `sync-to-gitlab.yml` روی هر پوش (همهٔ برنچ‌ها یا تگ‌ها) تاریخچهٔ کامل را آینه‌ای به مخزن خصوصی hamgit.ir می‌پوش می‌کند.
+The `sync-to-gitlab.yml` workflow force-mirrors all branches and tags to `hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG` on every push.
 
-**یک‌بار تنظیم لازم (الزامی):**
+| Secret | Purpose |
+|---|---|
+| `GITLAB_TOKEN` | Repository access token for hamgit.ir (works over HTTPS — verified) |
+| `GITLAB_SSH_KEY` | Optional fallback: private key of a write-enabled **Deploy Key**; when set, the workflow uses `git@hamgit.ir:…` |
 
-1. در GitHub به `Settings → Secrets and variables → Actions` بروید و **New repository secret** بزنید.
-2. Name: `GITLAB_TOKEN` — Value: توکن دسترسی مخزن hamgit.ir (توکنِ سطحِ همین پروژه کافی است — تست شده).
-3. بعد از آن، هر پوش به GitHub خودکار به GitLab هم پوش می‌شود. اجرای دستی: تب **Actions → Mirror to GitLab (hamgit.ir) → Run workflow**.
+Configure in **Settings → Secrets and variables → Actions**. Manual run: **Actions → Mirror to GitLab → Run workflow**.
 
-> توکن در هیچ فایلی ذخیره نمی‌شود و فقط از `secrets.GITLAB_TOKEN` خوانده می‌شود. توکن روی HTTPS کار می‌کند؛ آدرس SSH (`git@hamgit.ir:…`) به خود توکن کار نمی‌کند.
+## Adding a documentation page
 
-**مسیر جایگزین (اگر روزی HTTPS ایراد گرفت):** در hamgit.ir یک **Deploy Key** با دسترسی write بسازید (Settings → Repository → Deploy keys) و کلید **خصوصی** آن را به‌عنوان secret با نام `GITLAB_SSH_KEY` در GitHub ذخیره کنید — workflow به‌صورت خودکار از آدرس SSH استفاده می‌کند.
+1. Add a `.md` file under `MDDOCS/docs/` (service pages go to `docs/services/`).
+2. Register it in the `nav:` section of `MDDOCS/mkdocs.yml`.
+3. Preview with `mkdocs serve`, then commit — strict build keeps links/tables valid.
 
-## ۵. افزودن مستند جدید
+## Maintenance notes
 
-1. فایل `.md` را در `MDDOCS/docs/` بگذارید و در `MDDOCS/mkdocs.yml` بخش `nav:` یک خط اضافه کنید.
-2. پیش‌نمایش محلی: `python -m mkdocs serve`
-3. کامیت و پوش — بیلد داکر و مخزن GitLab خودکار به‌روز می‌شوند.
+- Docs embed **real service keys** — both remotes must stay **private**.
+- Fonts, icons and the logo are bundled — the site works fully offline (no CDN).
+- Rebuild from scratch: `docker compose build --no-cache`.
 
-## 6. نکات نگهداری
+## License
 
-- **امنیت:** در مستندات کلیدهای واقعی درج شده؛ هر دو مخزن باید خصوصی بمانند.
-- فونت وزیرمتن، marked.js و لوگو داخل مخزن هستند — سایت کاملاً آفلاین و بدون CDN کار می‌کند.
-- بازسازی ایمیج: `docker compose build --no-cache`
-- لایسنس مخزن GPL-3.0 است؛ هر استفاده باید مطابق آن باشد.
+Released under the [GNU GPL v3.0](LICENSE). Copyright © 2026 CITIBIG — all rights reserved.
