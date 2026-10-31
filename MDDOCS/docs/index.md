@@ -1,71 +1,53 @@
 <div class="citibig-cover" markdown>
 
-![لوگوی CITIBIG](assets/img/logo.png){ .citibig-logo }
+![CITIBIG](assets/img/logo.png){ .citibig-logo }
 
-# مستندات دروازه سرویس CITIBIG
+# CITIBIG API
 
-**DOC-GATEWAY-CITIBIG** — مستندات فنی رسمی دروازهٔ یکپارچهٔ API سازمانی (Apache APISIX)
+پلتفرم یکپارچهٔ سرویس‌های داده و استعلام — با **یک کلید API** به به بیش از **۱۳۰ سرویس** دسترسی داشته باشید.
 
-نسخهٔ مستندات: **اکتبر ۲۰۲۶** · APISIX **3.17.0** · لایسنس **GPL-3.0**
+[:material-rocket-launch: شروع سریع](getting-started.md){ .md-button .md-button--primary }
+[:material-book-open-page-variant: مرجع سرویس‌ها](services/identity.md){ .md-button }
 
 </div>
 
 ---
 
-## معرفی پروژه
+## چرا CITIBIG API؟
 
-**CITIBIG Gateway** دروازهٔ یکپارچهٔ API سازمانی است که تمام ارائه‌دهنده‌های خدمات وب (Zohal، api.ir، Ehraz، سرویس‌های Media و Movtihouse) را پشت **یک نقطهٔ ورود واحد** جمع می‌کند. این دروازه بر بستر **Apache APISIX 3.17.0** اجرا می‌شود و وظیفهٔ احراز هویت، بازنویسی مسیر، تزریق خودکار توکن‌ها و مسیریابی به بک‌اندها را بر عهده دارد.
-
-- کلاینت‌ها فقط با هدر `apikey` گیت‌وی احراز می‌شوند؛ توکن واقعی هر ارائه‌دهنده به‌صورت خودکار تزریق می‌شود.
-- مسیر هر سرویس آینهٔ مسیر بک‌اند است و مسیر گیت‌وی ثابت و مستند شده است.
-- مدیریت کامل از طریق **Admin API** (پورت 8005) انجام می‌شود.
-
-## اطلاعات اتصال سریع
-
-| مورد | مقدار |
+| | |
 |---|---|
-| Data-plane (پروکسی) | `http://2.144.22.190:9080` |
-| Admin API | `http://2.144.22.190:8005/apisix/admin` |
-| پیشوندهای مسیر | `/services/` (Zohal) · `/apiir/` (api.ir) · `/ehraz/` (Ehraz) |
-| تعداد کل روت‌ها | ۱۴۳ روت + ۳ روت مستقل |
-| هدر احراز گیت‌وی | `apikey: <کلید مربوطه>` |
+| :material-key-variant: **یک کلید، همهٔ سرویس‌ها** | به‌جای چندین پنل و حساب جداگانه، با یک کلید به کل کاتالوگ سرویس‌ها دسترسی دارید. |
+| :material-shield-check: **امنیت استاندارد** | احراز هویت ساده و استاندارد با هدر `apikey` در تمام درخواست‌ها. |
+| :material-api: **REST و JSON** | همهٔ سرویس‌ها RESTful هستند و با JSON کار می‌کنند؛ یکپارچه‌سازی سریع. |
+| :material-currency-usd: **مصرف شفاف** | هزینه فقط به‌ازای هر فراخوانی موفق؛ بدون هزینهٔ راه‌اندازی. |
+| :material-server: **زیرساخت پایدار** | دروازهٔ اختصاصی با مانیتورینگ و کنترل دسترسی. |
 
-## فهرست مستندات
+## سرویس‌ها در یک نگاه
 
-| # | مستند | شرح |
-|---|---|---|
-| ۱ | [داکیومنت جامع CITIBIG-GATEWAY](citibig-gateway-apisix-docs.md) | معماری ادغام‌شده، کلیدها، مدیریت و عیب‌یابی کلی |
-| ۲ | [داکیومنت سرویس api.ir](apiir-apisix-docs.md) | ۶۷ وب‌سرویس api.ir روی گیت‌وی |
-| ۳ | [داکیومنت سرویس Ehraz](ehraz-apisix-docs.md) | ۳۳ وب‌سرویس ehraz.io روی گیت‌وی |
-| ۴ | [برگهٔ تقلب APISIX + PostgREST](APISIX_CHEATSHEET.md) | راهنمای سریع روت‌های Media و سینتکس فیلتر |
-| ۵ | [لایسنس و حق نشر](license.md) | GPL-3.0 و کپی‌رایت |
+| | |
+|---|---|
+| :material-badge-account: [**سرویس‌های هویتی**](services/identity.md) | شاهکار، ثبت احوال، ثنا، نظام وظیفه، پاسپورت، احراز هویت ویدئویی |
+| :material-credit-card-outline: [**سرویس‌های بانکی**](services/banking.md) | شبا، کارت، حساب، تطبیق نام، چک صیادی و برگشتی، تسهیلات |
+| :material-receipt: [**قبوض**](services/bills.md) | آب، گاز، برق، تلفن ثابت و همراه |
+| :material-message-text: [**پیامک، تماس و صوت**](services/telecom.md) | OTP پیامکی و صوتی، ارسال پیامک، تبدیل متن به گفتار |
+| :material-car-info: [**خودرو و گواهینامه**](services/vehicle.md) | پلاک، خلافی، سند و مشخصات خودرو، گواهینامه و نمره منفی |
+| :material-office-building: [**کسب‌وکار و اشخاص حقوقی**](services/business.md) | اطلاعات شرکت، اعضا، امضاداران، مالیات، مجوزها، اینماد |
+| :material-map-marker: [**کدپستی و مکان**](services/location.md) | کدپستی، آدرس، مختصات، رهیگیری مرسوله، موقعیت IP |
+| :material-movie-open: [**رسانه**](services/media.md) | فیلم و سریال — جستجو، جدیدترین‌ها، فیلتر پیشرفته |
+| :material-tools: [**ابزارهای کمکی**](services/tools.md) | اعتبارسنجی ایمیل، تعطیلات، IP، متن به گفتار |
 
-## ساختار مخزن
+## شروع سریع
 
-```text
-DOC-GATEWAY-CITIBIG/
-├── MDDOCS/                  ← پروژهٔ MkDocs Material
-│   ├── mkdocs.yml           ← کانفیگ (RTL فارسی، تم شرکتی)
-│   ├── docs/                ← تک‌تک مستندات (Markdown)
-│   └── docs/assets/         ← لوگو و فونت وزیرمتن
-├── deploy/nginx.conf        ← کانفیگ nginx کانتینر (utf-8 + healthz)
-├── Dockerfile               ← بیلد دو مرحله‌ای (mkdocs → nginx)
-├── docker-compose.yml       ← اجرا با پورت قابل‌تنظیم (DOCS_PORT)
-├── .env.example             ← نمونهٔ تنظیمات
-├── .github/workflows/       ← سینک خودکار به hamgit.ir
-└── LICENSE                  ← GNU GPL v3.0
+```bash
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/IbanInfo" \
+  -H "apikey: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"iban":"IR820540102618026817609"}'
 ```
 
-## حق نشر و لایسنس
+برای آشنایی با ساختار درخواست‌ها [شروع سریع](getting-started.md) را ببینید.
 
-!!! note "کپی‌رایت"
+---
 
-    **© 2026 CITIBIG — تمام حقوق محفوظ است.**
-
-    این مستندات و پورتال نمایش آن‌ها («DOC-GATEWAY-CITIBIG») توسط تیم **tahavey18** تهیه و نگهداری می‌شود و تحت لایسنس [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html) منتشر شده است؛ اجازهٔ کپی، مطالعه، تغییر و بازنشر مشروط به رعایت همان لایسنس داده می‌شود. متن کامل لایسنس در فایل `LICENSE` ریشهٔ مخزن موجود است.
-
-    نام و لوگوی CITIBIG متعلق به مالک برند است و استفاده از آن خارج از این پروژه مجاز نیست.
-
-!!! warning "نکتهٔ محرمانگی"
-
-    در این مستندات کلیدهای واقعی سرویس‌ها درج شده است؛ این مخزن فقط باید در مخازن خصوصی (GitHub خصوصی و hamgit.ir خصوصی) نگهداری شود و در دسترس عموم قرار نگیرد.
+**© 2026 CITIBIG — تمام حقوق محفوظ است.** · [حق نشر و لایسنس](license.md)

@@ -1,27 +1,13 @@
-# CITIBIG Gateway Docs — MkDocs Material (RTL Persian, corporate theme)
+# CITIBIG API Docs — MkDocs Material (RTL Persian, corporate theme)
 # Build:  python -m mkdocs build --strict  (run from the MDDOCS directory)
 # Preview:  python -m mkdocs serve
 
-site_name: CITIBIG Gateway Docs
+site_name: CITIBIG API
 site_description: >-
-  مستندات رسمی دروازه سرویس CITIBIG (APISIX) — احراز هویت، مسیریابی،
-  مدیریت و عیب‌یابی
-site_author: CITIBIG — tahavey18
-repo_url: https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG
-repo_name: DOC-GATEWAY-CITIBIG
-edit_uri: ''
-
-# فهرست ناوبری — برای افزودن مستند جدید، همین‌جا یک خط اضافه کنید
-nav:
-  - خانه: index.md
-  - CITIBIG-GATEWAY: citibig-gateway-apisix-docs.md
-  - api.ir: apiir-apisix-docs.md
-  - Ehraz: ehraz-apisix-docs.md
-  - راهنمای سریع: APISIX_CHEATSHEET.md
-  - لایسنس: license.md
-
-# حق نشر — در فوتر تمام صفحات نمایش داده می‌شود
-copyright: '© 2026 CITIBIG — تمام حقوق محفوظ است · منتشرشده تحت لایسنس GPL-3.0'
+  مستندات رسمی CITIBIG API — دسترسی یکپارچه به سرویس‌های استعلام،
+  داده و ارتباطات با یک کلید API
+site_author: CITIBIG
+copyright: '© 2026 CITIBIG — تمام حقوق محفوظ است'
 
 theme:
   name: material
@@ -31,9 +17,20 @@ theme:
   favicon: assets/img/logo.png
   font: false
   palette:
-    - scheme: default
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: custom
       accent: custom
+      toggle:
+        icon: material/weather-night
+        name: حالت شب
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: حالت روز
   features:
     - navigation.tabs
     - navigation.top
@@ -58,16 +55,31 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css
 
+# فهرست ناوبری — برای افزودن مستند جدید، همین‌جا یک خط اضافه کنید
+nav:
+  - خانه: index.md
+  - عمومی:
+    - شروع سریع: getting-started.md
+    - احراز هویت: authentication.md
+    - کدهای پاسخ و خطا: errors.md
+    - حق نشر و لایسنس: license.md
+  - توسعه‌دهندگان:
+    - سرویس‌های هویتی: services/identity.md
+    - سرویس‌های بانکی: services/banking.md
+    - قبوض آب، گاز و برق: services/bills.md
+    - پیامک، تماس و صوت: services/telecom.md
+    - خودرو و گواهینامه: services/vehicle.md
+    - کسب‌وکار و اشخاص حقوقی: services/business.md
+    - کدپستی و مکان: services/location.md
+    - رسانه (فیلم و سریال): services/media.md
+    - ابزارهای کمکی: services/tools.md
+
 extra:
   generator: false
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG
-      name: مخزن GitHub
-    - icon: fontawesome/brands/gitlab
-      link: https://hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG
-      name: آینهٔ مخزن (hamgit.ir)

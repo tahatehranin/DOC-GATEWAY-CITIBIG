@@ -79,3 +79,17 @@ body {
 .md-typeset table:not([class]) td {
   min-width: 4rem;
 }
+
+/* ---- Dark scheme (slate) corporate palette ---- */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #10233f;
+  --md-primary-fg-color--light: #2c4a76;
+  --md-primary-fg-color--dark: #0a1a30;
+  --md-accent-fg-color: #e4315f;
+  --md-default-bg-color: #0f1420;
+}
+[data-md-color-scheme="slate"] .md-header__button.md-logo,
+[data-md-color-scheme="slate"] .citibig-cover .citibig-logo {
+  background: #ffffff;
+  border-radius: 8px;
+}

@@ -1,6 +1,6 @@
 # DOC-GATEWAY-CITIBIG — پورتال مستندات دروازه سرویس CITIBIG
 
-مستندات رسمی و پورتال نمایش دروازهٔ یکپارچهٔ API سازمانی **CITIBIG** (بر بستر Apache APISIX 3.17.0) — شامل تک‌تک مستندات سرویس‌ها، UI شرکتی، لوگو، صفحهٔ اول، حق کپی‌رایت و لایسنس GPL-3.0.
+مستندات رسمی و پورتال نمایش **CITIBIG API** — پلتفرم یکپارچهٔ سرویس‌های داده و استعلام — شامل کاتالوگ کامل سرویس‌ها، UI شرکتی (روشن/شب)، لوگو، صفحهٔ اول، حق کپی‌رایت و لایسنس GPL-3.0.
 
 - **مخزن GitHub:** https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG — نگهداری توسط تیم tahavey18
 - **مخزن GitLab (hamgit.ir):** https://hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG
@@ -15,12 +15,15 @@ DOC-GATEWAY-CITIBIG/
 ├── MDDOCS/                  ← پروژهٔ MkDocs Material
 │   ├── mkdocs.yml           ← کانفیگ (RTL فارسی، تم شرکتی، nav)
 │   ├── docs/                ← تک‌تک مستندات (Markdown)
-│   │   ├── index.md               ← صفحه اول: کاور، لوگو، کپی‌رایت
-│   │   ├── citibig-gateway-apisix-docs.md
-│   │   ├── apiir-apisix-docs.md
-│   │   ├── ehraz-apisix-docs.md
-│   │   ├── APISIX_CHEATSHEET.md
-│   │   └── license.md             ← لایسنس GPL-3.0 و حق نشر
+│   │   ├── index.md               ← صفحهٔ اول: کاور، ویژگی‌ها، کپی‌رایت
+│   │   ├── getting-started.md     ← شروع سریع
+│   │   ├── authentication.md      ← احراز هویت
+│   │   ├── errors.md              ← کدهای پاسخ و خطا
+│   │   ├── license.md             ← حق نشر و لایسنس (کوتاه)
+│   │   └── services/              ← مرجع ۹ خانوادهٔ سرویس
+│   │       ├── identity.md / banking.md / bills.md
+│   │       ├── telecom.md / vehicle.md / business.md
+│   │       └── location.md / media.md / tools.md
 │   ├── docs/assets/         ← لوگو + فونت وزیرمتن (کاملاً آفلاین)
 │   └── docs/stylesheets/    ← استایل شرکتی (extra.css)
 ├── deploy/nginx.conf        ← کانفیگ nginx کانتینر (charset utf-8 + healthz)
