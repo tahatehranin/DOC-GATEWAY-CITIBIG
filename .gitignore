@@ -221,3 +221,6 @@ __marimo__/
 
 # Mimosa security-hook session artifacts
 .mimosa/
+
+# MkDocs build output
+MDDOCS/site/

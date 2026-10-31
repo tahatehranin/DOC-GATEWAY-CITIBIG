@@ -12,17 +12,19 @@
 
 ```
 DOC-GATEWAY-CITIBIG/
-├── MDDOCS/                  ← پورتال مستندات (سایت شرکتی)
-│   ├── index.html           ← قالب اصلی (RTL، شرکتی)
+├── MDDOCS/                  ← پروژهٔ MkDocs Material
+│   ├── mkdocs.yml           ← کانفیگ (RTL فارسی، تم شرکتی، nav)
 │   ├── docs/                ← تک‌تک مستندات (Markdown)
-│   │   ├── 00-cover.md            ← صفحه اول: کاور، لوگو، کپی‌رایت
+│   │   ├── index.md               ← صفحه اول: کاور، لوگو، کپی‌رایت
 │   │   ├── citibig-gateway-apisix-docs.md
 │   │   ├── apiir-apisix-docs.md
 │   │   ├── ehraz-apisix-docs.md
-│   │   └── APISIX_CHEATSHEET.md
-│   └── assets/              ← لوگو، فونت وزیرمتن، CSS/JS
+│   │   ├── APISIX_CHEATSHEET.md
+│   │   └── license.md             ← لایسنس GPL-3.0 و حق نشر
+│   ├── docs/assets/         ← لوگو + فونت وزیرمتن (کاملاً آفلاین)
+│   └── docs/stylesheets/    ← استایل شرکتی (extra.css)
 ├── deploy/nginx.conf        ← کانفیگ nginx کانتینر (charset utf-8 + healthz)
-├── Dockerfile               ← ایمیج nginx با مستندات
+├── Dockerfile               ← بیلد دو مرحله‌ای (mkdocs --strict → nginx)
 ├── docker-compose.yml       ← با DOCS_PORT قابل‌تنظیم (پیش‌فرض 3100)
 ├── .env.example             ← نمونهٔ تنظیمات
 ├── .github/workflows/sync-to-gitlab.yml  ← سینک خودکار به hamgit.ir
@@ -42,6 +44,16 @@ docker compose up -d --build
 ```bash
 DOCS_PORT=3101 docker compose up -d
 ```
+
+پیش‌نمایش محلی بدون داکر (رندر زندهٔ MkDocs Material):
+
+```bash
+python -m pip install "mkdocs-material~=9.5"
+python -m mkdocs serve          # از داخل پوشهٔ MDDOCS
+# → http://localhost:8000
+```
+
+> بیلد نهایی با `python -m mkdocs build --strict` انجام می‌شود؛ در حالت strict هر لینک شکسته یا هشدار مارک‌داون بیلد را متوقف می‌کند — یعنی مستندات همیشه سالم بیلد می‌شوند.
 
 ## 3. استقرار در Dokploy (از روی مخزن GitLab)
 
@@ -74,9 +86,9 @@ Workflow ی `sync-to-gitlab.yml` روی هر پوش (همهٔ برنچ‌ها ی
 
 ## ۵. افزودن مستند جدید
 
-1. فایل `.md` را در `MDDOCS/docs/` بگذارید.
-2. در `MDDOCS/assets/js/app.js` آرایهٔ `DOCS` را با slug و عنوان جدید به‌روز کنید.
-3. کامیت و پوش — پورتال و مخزن GitLab خودکار به‌روز می‌شوند.
+1. فایل `.md` را در `MDDOCS/docs/` بگذارید و در `MDDOCS/mkdocs.yml` بخش `nav:` یک خط اضافه کنید.
+2. پیش‌نمایش محلی: `python -m mkdocs serve`
+3. کامیت و پوش — بیلد داکر و مخزن GitLab خودکار به‌روز می‌شوند.
 
 ## 6. نکات نگهداری
 

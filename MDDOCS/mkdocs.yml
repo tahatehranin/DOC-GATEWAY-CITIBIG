@@ -1,0 +1,73 @@
+# CITIBIG Gateway Docs — MkDocs Material (RTL Persian, corporate theme)
+# Build:  python -m mkdocs build --strict  (run from the MDDOCS directory)
+# Preview:  python -m mkdocs serve
+
+site_name: CITIBIG Gateway Docs
+site_description: >-
+  مستندات رسمی دروازه سرویس CITIBIG (APISIX) — احراز هویت، مسیریابی،
+  مدیریت و عیب‌یابی
+site_author: CITIBIG — tahavey18
+repo_url: https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG
+repo_name: DOC-GATEWAY-CITIBIG
+edit_uri: ''
+
+# فهرست ناوبری — برای افزودن مستند جدید، همین‌جا یک خط اضافه کنید
+nav:
+  - خانه: index.md
+  - CITIBIG-GATEWAY: citibig-gateway-apisix-docs.md
+  - api.ir: apiir-apisix-docs.md
+  - Ehraz: ehraz-apisix-docs.md
+  - راهنمای سریع: APISIX_CHEATSHEET.md
+  - لایسنس: license.md
+
+# حق نشر — در فوتر تمام صفحات نمایش داده می‌شود
+copyright: '© 2026 CITIBIG — تمام حقوق محفوظ است · منتشرشده تحت لایسنس GPL-3.0'
+
+theme:
+  name: material
+  language: fa
+  direction: rtl
+  logo: assets/img/logo.png
+  favicon: assets/img/logo.png
+  font: false
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - search.highlight
+    - content.code.copy
+    - content.tooltips
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - def_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tahatehranin/DOC-GATEWAY-CITIBIG
+      name: مخزن GitHub
+    - icon: fontawesome/brands/gitlab
+      link: https://hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG
+      name: آینهٔ مخزن (hamgit.ir)

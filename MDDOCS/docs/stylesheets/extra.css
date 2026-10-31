@@ -1,0 +1,81 @@
+/* =====================================================================
+   CITIBIG Gateway Docs - corporate theme overrides (Material for MkDocs)
+   Palette from the CITIBIG logo: navy #17335E / crimson #C8103E
+   ===================================================================== */
+
+/* ---- Local Persian font (OFL-licensed webfont, no CDN) ---- */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../assets/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../assets/fonts/Vazirmatn-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../assets/fonts/Vazirmatn-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Corporate palette ---- */
+:root {
+  --md-primary-fg-color: #17335e;
+  --md-primary-fg-color--light: #3b5a8f;
+  --md-primary-fg-color--dark: #0e2244;
+  --md-accent-fg-color: #c8103e;
+}
+
+/* ---- RTL-friendly inline code (URLs and keys stay LTR) ---- */
+.md-typeset code {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* ---- Header logo on white chip (PNG has white background) ---- */
+.md-header__button.md-logo {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 4px 6px;
+  margin: 4px 0;
+}
+.md-header__button.md-logo img {
+  height: 30px;
+  width: auto;
+}
+
+/* ---- Cover page (index) ---- */
+.citibig-cover {
+  text-align: center;
+  padding: 24px 0 6px;
+}
+.citibig-cover .citibig-logo {
+  height: 110px;
+  width: auto;
+  margin-bottom: 10px;
+}
+.citibig-cover h1 {
+  margin-bottom: 0;
+}
+
+/* ---- Persian body font stack ---- */
+.md-typeset {
+  --md-text-font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+}
+body {
+  font-family: "Vazirmatn", "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ---- Tables: keep LTR columns readable in RTL layout ---- */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  min-width: 4rem;
+}
