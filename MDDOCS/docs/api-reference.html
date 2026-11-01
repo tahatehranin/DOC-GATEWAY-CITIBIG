@@ -7,11 +7,29 @@
   <link rel="icon" type="image/png" href="assets/img/logo.png" />
   <style>
     html, body { margin: 0; padding: 0; }
+    .citibig-header {
+      background: #17335e; color: #fff; height: 52px;
+      display: flex; align-items: center; gap: 14px; padding: 0 18px;
+      font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+    }
+    .citibig-header img { height: 34px; background: #fff; border-radius: 6px; padding: 3px 6px; }
+    .citibig-header .t { font-weight: 700; font-size: 15px; }
+    .citibig-header a { color: #f5b301; text-decoration: none; font-size: 13px; margin-inline-start: auto; }
+    .citibig-header a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
+  <div class="citibig-header">
+    <img src="assets/img/logo.png" alt="CITIBIG" />
+    <span class="t">CITIBIG API — مرجع تعاملی</span>
+    <a href="index.html">← بازگشت به مستندات</a>
+  </div>
   <!-- مرجع تعاملی CITIBIG API — رندرکنندهٔ Scalar، تغذیه‌شده از openapi-citibig.json -->
-  <script id="api-reference" data-url="assets/openapi-citibig.json"></script>
+  <script
+    id="api-reference"
+    data-url="assets/openapi-citibig.json"
+    data-configuration='{"theme":{"customCss":[":root{--scalar-color-1:#17335e;--scalar-color-2:#c8103e;--scalar-color-3:#3b5a8f;--scalar-color-accent:#c8103e;--scalar-background-1:#ffffff;--scalar-background-2:#f4f6fa;--scalar-background-3:#eef2f9;--scalar-border-color:#dfe5ee;} .dark-mode{--scalar-color-1:#dce6f5;--scalar-color-2:#ef5d81;--scalar-color-3:#9db8dd;--scalar-color-accent:#ef5d81;--scalar-background-1:#0f1420;--scalar-background-2:#10233f;--scalar-background-3:#0a1a30;--scalar-border-color:#22304a;}"]}}'
+  ></script>
   <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
 </body>
 </html>

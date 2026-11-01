@@ -47,6 +47,9 @@ DOC-GATEWAY-CITIBIG/
 │   │       └── location.md / media.md / tools.md
 │   └── docs/assets/         ← لوگو + فونت وزیرمتن (کاملاً آفلاین)
 ├── deploy/nginx.conf        ← کانفیگ nginx کانتینر (utf-8 + healthz)
+├── openapi.json             ← اسپک OpenAPI 3.1 (۱۴۳ مسیر — منبع مرجع تعاملی)
+├── scalar-docs/             ← پروژهٔ Scalar (راهنماها، تم، کانفیگ رجیستری)
+├── scalar-docs/preview.html ← پیش‌نمایش مستقل مرجع Scalar (CDN)
 ├── Dockerfile               ← بیلد دو مرحله‌ای (mkdocs --strict → nginx)
 ├── docker-compose.yml       ← اجرا با DOCS_PORT قابل‌تنظیم (پیش‌فرض 3100)
 ├── .env.example             ← نمونهٔ تنظیمات
@@ -76,6 +79,15 @@ python -m pip install "mkdocs-material~=9.5"
 python -m mkdocs serve        # از داخل پوشهٔ MDDOCS
 # → http://localhost:8000
 ```
+
+## مرجع تعاملی API (Scalar)
+
+پورتال یک مرجع تعاملی کامل با رندرکنندهٔ Scalar دارد (همان UI مانند `s.api.ir/scalar/v1`):
+`MDDOCS/docs/api-reference.html` — بعد از deploy روی `/api-reference.html`.
+
+- منبع داده: `openapi.json` (OpenAPI 3.1، ۱۴۳ مسیر/۱۴۴ عملیات) که به‌صورت `assets/openapi-citibig.json` داخل سایت کپی می‌شود
+- برند CITIBIG با تم `--scalar-*` (روشن/تاریک) و هدر سرمه‌ای شرکتی
+- اسکافولد Scalar Docs (راهنماها/تم/کانفیگ رجیستری) در `scalar-docs/`
 
 ## استقرار در Dokploy
 

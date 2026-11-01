@@ -46,6 +46,8 @@ MDDOCS/
         └── location.md   media.md     tools.md
 ```
 
+Repo root also holds: `openapi.json` — the OpenAPI 3.1 spec (143 paths / 144 operations, source of the interactive reference) — plus `scalar-docs/` (Scalar docs project: guides, `--scalar-*` brand theme, registry config) and `scalar-docs/preview.html` (standalone CDN preview).
+
 ## Run locally with Docker
 
 ```bash
@@ -63,6 +65,15 @@ python -m pip install "mkdocs-material~=9.5"
 python -m mkdocs serve        # from the MDDOCS directory
 # → http://localhost:8000
 ```
+
+## Interactive API reference (Scalar)
+
+The portal ships a live, interactive reference (same renderer as `s.api.ir/scalar/v1`):
+`MDDOCS/docs/api-reference.html` — served at `/api-reference.html` after deploy.
+
+- Source of truth: `openapi.json` (OpenAPI 3.1, 143 paths / 144 operations), copied into the site as `assets/openapi-citibig.json`
+- CITIBIG-branded via a custom `--scalar-*` theme (light/dark) and a slim corporate header
+- Scalar docs project scaffold (guides, theme, registry config) lives in `scalar-docs/`
 
 ## Deploy on Dokploy
 
