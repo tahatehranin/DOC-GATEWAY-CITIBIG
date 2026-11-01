@@ -94,16 +94,6 @@ python -m mkdocs serve        # از داخل پوشهٔ MDDOCS
 
 > انتشار idempotent است — اگر تگ از قبل موجود باشد، رد می‌شود.
 
-## سینک خودکار GitHub → hamgit.ir
-
-Workflow ی `sync-to-gitlab.yml` روی هر پوش، همهٔ برنچ‌ها و تگ‌ها را به مخزن `hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG` آینه‌ای پوش می‌کند.
-
-| Secret | کاربرد |
-|---|---|
-| `GITLAB_TOKEN` | توکن دسترسی مخزن hamgit.ir (روی HTTPS کار می‌کند — تست شده) |
-| `GITLAB_SSH_KEY` | جایگزین اختیاری: کلید خصوصی **Deploy Key** با دسترسی write — در این صورت workflow از آدرس SSH استفاده می‌کند |
-
-تنظیم: **Settings → Secrets and variables → Actions** · اجرای دستی: **Actions → Mirror to GitLab → Run workflow**.
 
 ## افزودن مستند جدید
 
