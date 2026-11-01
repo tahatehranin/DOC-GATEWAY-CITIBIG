@@ -1,0 +1,25 @@
+{
+  "$schema": "https://registry.scalar.com/@scalar/schemas/config",
+  "name": "CITIBIG API Docs",
+  "siteConfig": {
+    "theme": "./theme/citibig.css",
+    "metadata": {
+      "title": "CITIBIG API — مستندات رسمی",
+      "description": "پلتفرم یکپارچهٔ سرویس‌های داده و استعلام CITIBIG — ۱۴۳ سرویس با یک کلید API"
+    }
+  },
+  "navigation": {
+    "guides": [
+      "content/index.md",
+      "content/quickstart.md",
+      "content/authentication.md"
+    ],
+    "apiReference": true
+  },
+  "apiReference": {
+    "registry": {
+      "namespace": "@citibig",
+      "slug": "citibig-api"
+    }
+  }
+}
