@@ -1,10 +1,18 @@
-name: Mirror to GitLab (hamgit.ir)
+
+name: Mirror to GitLab
 
 on:
   push:
     branches: ['**']
     tags: ['**']
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gitlab-mirror-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   mirror:
@@ -15,49 +23,79 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push mirror to hamgit.ir
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Configure destination authentication
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
           GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
         run: |
-          set -e
+          set -euo pipefail
 
-          GITLAB_URL_HTTPS="https://oauth2:${GITLAB_TOKEN}@hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG.git"
-          GITLAB_URL_SSH="git@hamgit.ir:tahavey18/DOC-GATEWAY-CITIBIG.git"
-
-          if [ -n "$GITLAB_SSH_KEY" ]; then
-            echo ">> Mirror over SSH (Deploy Key)"
-            mkdir -p ~/.ssh
+          if [ -n "${GITLAB_SSH_KEY:-}" ]; then
+            install -d -m 700 ~/.ssh
             printf '%s\n' "$GITLAB_SSH_KEY" | tr -d '\r' > ~/.ssh/id_gitlab_mirror
             chmod 600 ~/.ssh/id_gitlab_mirror
-            ssh-keyscan -t ed25519,rsa hamgit.ir >> ~/.ssh/known_hosts 2>/dev/null
-            {
-              echo "Host hamgit.ir"
-              echo "  User git"
-              echo "  IdentityFile ~/.ssh/id_gitlab_mirror"
-              echo "  IdentitiesOnly yes"
-            } > ~/.ssh/config
+
+            ssh-keyscan -H -t ed25519,rsa hamgit.ir >> ~/.ssh/known_hosts 2>/dev/null
+            test -s ~/.ssh/known_hosts
+
+            cat > ~/.ssh/config <<'EOF'
+          Host hamgit.ir
+            HostName hamgit.ir
+            User git
+            IdentityFile ~/.ssh/id_gitlab_mirror
+            IdentitiesOnly yes
+            StrictHostKeyChecking yes
+          EOF
             chmod 600 ~/.ssh/config
-            echo ">> SSH auth test:"
-            ssh -o BatchMode=yes -o ConnectTimeout=15 -T git@hamgit.ir 2>&1 | head -2 || true
-            git remote add gitlab "$GITLAB_URL_SSH"
-          elif [ -n "$GITLAB_TOKEN" ]; then
-            echo ">> Mirror over HTTPS (repository access token)"
-            git remote add gitlab "$GITLAB_URL_HTTPS"
+
+            git remote add gitlab git@hamgit.ir:tahavey18/DOC-GATEWAY-CITIBIG.git
+            ssh -o BatchMode=yes -o ConnectTimeout=20 -T git@hamgit.ir || true
+          elif [ -n "${GITLAB_TOKEN:-}" ]; then
+            git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG.git"
             git config http.version HTTP/1.1
           else
-            echo "::error::Secret GITLAB_TOKEN (or GITLAB_SSH_KEY) is not set. Add it in: Repository Settings -> Secrets and variables -> Actions -> New repository secret."
+            echo "::error::Set GITLAB_SSH_KEY or GITLAB_TOKEN in repository Actions secrets."
             exit 1
           fi
 
-          if ! git push gitlab --all --force; then
-            echo "::warning::Force push declined (possibly pre-receive hook blocking history rewrite). Trying delete + fresh push fallback..."
-            for ref in $(git for-each-ref --format='%(refname:short)' refs/heads); do
-              git push gitlab --delete "$ref" 2>/dev/null || true
-            done
-            if ! git push gitlab --all; then
-              echo "::error::Mirror push failed even after delete+repush. Check: (1) Deploy Key has write access (Settings -> Repository -> Deploy keys), (2) GITLAB_SSH_KEY contains the full private key (BEGIN/END lines included), (3) GITLAB_TOKEN (if used instead) is valid with write_repository scope."
-              exit 1
+      - name: Sync branches without force-pushing
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r remote_ref; do
+            [ -n "$remote_ref" ] || continue
+            [ "$remote_ref" = "origin/HEAD" ] && continue
+
+            branch="${remote_ref#origin/}"
+            echo "Syncing branch: $branch"
+
+            git checkout -B "$branch" "origin/$branch"
+
+            if git ls-remote --exit-code --heads gitlab "$branch" >/dev/null 2>&1; then
+              git fetch gitlab "refs/heads/$branch:refs/remotes/gitlab/$branch"
+
+              git merge --no-edit --allow-unrelated-histories -s ours "refs/remotes/gitlab/$branch"
             fi
-          fi
-          git push gitlab --tags --force
+
+            git push gitlab "HEAD:refs/heads/$branch"
+          done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin)
+
+      - name: Publish new tags
+        run: |
+          set -euo pipefail
+
+          while IFS= read -r tag; do
+            [ -n "$tag" ] || continue
+
+            if git ls-remote --exit-code --tags gitlab "refs/tags/$tag" >/dev/null 2>&1; then
+              echo "Tag already exists on destination; leaving it unchanged: $tag"
+            else
+              git push gitlab "refs/tags/$tag:refs/tags/$tag"
+            fi
+          done < <(git tag --list)
+          
