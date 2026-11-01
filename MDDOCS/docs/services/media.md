@@ -2,17 +2,40 @@
 
 جستجو و دریافت اطلاعات فیلم و سریال با فیلترهای پیشرفته. سرویس‌های این صفحه روی پیشوند `/api/` سرو می‌شوند و پاسخ به‌صورت مستقیم (بدون wrapper) برمی‌گردد.
 
-## سرویس‌های فیلم (POST جز `filter` و `recent` که GET است)
+!!! note "دربارهٔ نمونه‌های فراخوانی"
 
-| سرویس | مسیر | ورودی‌های الزامی | توضیح |
-|---|---|---|---|
-| جدیدترین فیلم‌ها | `/api/movies/recent` | — (GET) | ۱۰ فیلم آخر |
-| جستجوی فیلم | `/api/movies/search` | پارامترهای فیلتر (GET) | جستجو با فیلترهای پیشرفته |
-| فیلتر فیلم | `/api/movies/filter` | پارامترهای فیلتر (GET) | فهرست فیلم‌ها با ستون‌های پایه |
-| جدیدترین سریال‌ها | `/api/series/recent` | — (GET) | ۱۰ قسمت آخر + نام فیلم |
-| جستجوی سریال | `/api/series/search` | `FilmId` (GET) | جستجوی قسمت‌های سریال |
+    در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — پارامترهای فیلتر به‌صورت query string ارسال می‌شوند.
 
-## سینتکس فیلتر
+## سرویس‌های فیلم و سریال
+
+| سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
+|---|---|---|---|---|
+| جدیدترین فیلم‌ها | `/api/movies/recent` | GET | — | ۱۰ فیلم آخر |
+| جستجوی فیلم | `/api/movies/search` | GET | پارامترهای فیلتر | جستجو با فیلترهای پیشرفته |
+| فیلتر فیلم | `/api/movies/filter` | GET | پارامترهای فیلتر | فهرست فیلم‌ها با ستون‌های پایه |
+| جدیدترین سریال‌ها | `/api/series/recent` | GET | — | ۱۰ قسمت آخر + نام فیلم |
+| جستجوی سریال | `/api/series/search` | GET | `FilmId` | جستجوی قسمت‌های سریال |
+
+**نمونهٔ فراخوانی (بدون بدنه):**
+
+```bash
+# جدیدترین فیلم‌ها — GET
+curl -X GET "http://2.144.22.190:9080/api/movies/recent" -H "apikey: YOUR_API_KEY"
+
+# جستجوی فیلم — GET
+curl -X GET "http://2.144.22.190:9080/api/movies/search" -H "apikey: YOUR_API_KEY"
+
+# فیلتر فیلم — GET
+curl -X GET "http://2.144.22.190:9080/api/movies/filter" -H "apikey: YOUR_API_KEY"
+
+# جدیدترین سریال‌ها — GET
+curl -X GET "http://2.144.22.190:9080/api/series/recent" -H "apikey: YOUR_API_KEY"
+
+# جستجوی سریال — GET
+curl -X GET "http://2.144.22.190:9080/api/series/search" -H "apikey: YOUR_API_KEY"
+```
+
+## سینتکس فیلتر (query string)
 
 | عملیات | سینتکس |
 |---|---|
@@ -20,37 +43,9 @@
 | دقیق عددی | `FilmId=eq.6369` |
 | بزرگ‌تر از | `IMDB=gt.9` |
 | کوچک‌تر از | `Year=lt.2000` |
-| AND چندتایی | `?Year=eq.2025&Name=ilike.*mission*` |
+| AND چندتایی | `?Year=eq.2025&Name=ilike.*mission*` | 
 | مرتب‌سازی | `&order=Id.desc` یا `&order=Year.asc` |
 | محدودیت | `&limit=10` |
-
-## نمونهٔ فراخوانی
-
-```bash
-# جدیدترین فیلم‌ها
-curl "http://2.144.22.190:9080/api/movies/recent" -H "apikey: YOUR_API_KEY"
-
-# جستجوی فیلم با نام
-curl "http://2.144.22.190:9080/api/movies/search?Name=ilike.*shawshank*" -H "apikey: YOUR_API_KEY"
-
-# فیلتر ترکیبی
-curl "http://2.144.22.190:9080/api/movies/filter?Year=eq.2025&Name=ilike.*mission*" -H "apikey: YOUR_API_KEY"
-```
-
-## نمونهٔ پاسخ
-
-```json
-{
-  "Id": 6373,
-  "Name": "I Swear",
-  "Year": 2025,
-  "Country": "انگلستان",
-  "Director": "",
-  "Score": "0",
-  "IMDB": "8.4",
-  "Image": "..."
-}
-```
 
 !!! tip "نکتهٔ join سریال"
 

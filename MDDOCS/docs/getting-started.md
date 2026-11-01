@@ -1,6 +1,6 @@
 # :material-rocket-launch: شروع سریع
 
-در چند دقیقه اولین درخواست خود را به CITIBIG API ارسال کنید.
+در چند دقیقه اولین درخواست خود را به CITIBIG API ارسال کنید. نمونه‌ها بدون بدنه (body) هستند؛ بدنهٔ JSON هر سرویس طبق ستون «ورودی‌های الزامی» در [مرجع سرویس‌ها](services/identity.md) بعداً اضافه می‌شود.
 
 ## پیش‌نیازها
 
@@ -27,9 +27,7 @@ http://2.144.22.190:9080
 
     ```bash
     curl -X POST "http://2.144.22.190:9080/apiir/Sandbox/Echo" \
-      -H "apikey: YOUR_API_KEY" \
-      -H "Content-Type: application/json" \
-      -d '{"name":"test"}'
+      -H "apikey: YOUR_API_KEY"
     ```
 
 === "Python"
@@ -37,8 +35,7 @@ http://2.144.22.190:9080
     ```python
     import requests
     r = requests.post("http://2.144.22.190:9080/apiir/Sandbox/Echo",
-                      headers={"apikey": "YOUR_API_KEY"},
-                      json={"name": "test"})
+                      headers={"apikey": "YOUR_API_KEY"})
     print(r.json())
     ```
 
@@ -47,8 +44,7 @@ http://2.144.22.190:9080
     ```js
     const r = await fetch("http://2.144.22.190:9080/apiir/Sandbox/Echo", {
       method: "POST",
-      headers: { apikey: "YOUR_API_KEY", "Content-Type": "application/json" },
-      body: JSON.stringify({ name: "test" }),
+      headers: { apikey: "YOUR_API_KEY" },
     });
     console.log(await r.json());
     ```

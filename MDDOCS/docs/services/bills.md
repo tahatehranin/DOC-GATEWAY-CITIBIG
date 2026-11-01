@@ -1,39 +1,81 @@
 # :material-receipt: قبوض آب، گاز و برق
 
-استعلام قبوض آب، گاز، برق و تلفن — با شمارهٔ قبض یا شناسهٔ قبض. قالب پاسخ هر خانواده در [کدهای پاسخ و خطا](../errors.md) مستند است.
+استعلام قبوض آب، گاز، برق و تلفن — با شناسهٔ قبض. قالب پاسخ هر خانواده در [کدهای پاسخ و خطا](../errors.md) مستند است.
 
-## استعلام قبض (خانوادهٔ `/apiir/sw1/` — POST)
+!!! note "دربارهٔ نمونه‌های فراخوانی"
 
-| سرویس | مسیر | ورودی‌های الزامی | توضیح |
-|---|---|---|---|
-| قبض آب | `/apiir/sw1/WatterBill` | `billID` | استعلام قبض آب |
-| قبض آب با جزئیات | `/apiir/sw1/WatterBillInfo` | `billID` | استعلام قبض آب با جزئیات کامل |
-| قبض گاز | `/apiir/sw1/GasBill` | `billID` | استعلام قبض گاز |
-| قبض گاز با جزئیات | `/apiir/sw1/GasBillInfo` | `billID` | استعلام قبض گاز با جزئیات کامل |
-| قبض برق | `/apiir/sw1/PowerBill` | `billID` | استعلام قبض برق |
-| قبض برق با جزئیات | `/apiir/sw1/PowerBillInfo` | `billID` | استعلام قبض برق با جزئیات کامل |
+    در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — طبق ستون «ورودی‌های الزامی»، بدنهٔ JSON بعداً به هر کرل اضافه می‌شود.
 
-## قبوض تلفن (خانوادهٔ `/services/inquiry/` — POST)
+## استعلام قبض — خانوادهٔ `/apiir/sw1/`
 
-| سرویس | مسیر | ورودی‌های الزامی | توضیح |
-|---|---|---|---|
-| قبض تلفن ثابت | `/services/inquiry/bill/fixed_line` | طبق مرجع | استعلام قبض تلفن ثابت |
-| قبض همراه اول | `/services/inquiry/bill/mci` | طبق مرجع | استعلام قبض همراه اول |
-| قبض ایرانسل | `/services/inquiry/bill/irancell` | طبق مرجع | استعلام قبض ایرانسل |
-| قبض رایتل | `/services/inquiry/bill/rightel` | طبق مرجع | استعلام قبض رایتل |
-| قبض برق | `/services/inquiry/bill/electricity` | طبق مرجع | استعلام قبض برق |
-| قبض گاز | `/services/inquiry/bill/gas` | طبق مرجع | استعلام قبض گاز |
-| قبض آب | `/services/inquiry/bill/water` | طبق مرجع | استعلام قبض آب |
+| سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
+|---|---|---|---|---|
+| قبض آب | `/apiir/sw1/WatterBill` | POST | `billID` | استعلام قبض آب |
+| قبض آب با جزئیات | `/apiir/sw1/WatterBillInfo` | POST | `billID` | استعلام قبض آب با جزئیات کامل |
+| قبض گاز | `/apiir/sw1/GasBill` | POST | `billID` | استعلام قبض گاز |
+| قبض گاز با جزئیات | `/apiir/sw1/GasBillInfo` | POST | `billID` | استعلام قبض گاز با جزئیات کامل |
+| قبض برق | `/apiir/sw1/PowerBill` | POST | `billID` | استعلام قبض برق |
+| قبض برق با جزئیات | `/apiir/sw1/PowerBillInfo` | POST | `billID` | استعلام قبض برق با جزئیات کامل |
+
+**نمونهٔ فراخوانی (بدون بدنه):**
+
+```bash
+# قبض آب — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/WatterBill" -H "apikey: YOUR_API_KEY"
+
+# قبض آب با جزئیات — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/WatterBillInfo" -H "apikey: YOUR_API_KEY"
+
+# قبض گاز — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/GasBill" -H "apikey: YOUR_API_KEY"
+
+# قبض گاز با جزئیات — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/GasBillInfo" -H "apikey: YOUR_API_KEY"
+
+# قبض برق — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/PowerBill" -H "apikey: YOUR_API_KEY"
+
+# قبض برق با جزئیات — POST
+curl -X POST "http://2.144.22.190:9080/apiir/sw1/PowerBillInfo" -H "apikey: YOUR_API_KEY"
+```
+
+## قبوض تلفن و همراه — خانوادهٔ `/services/inquiry/`
+
+| سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
+|---|---|---|---|---|
+| قبض تلفن ثابت | `/services/inquiry/bill/fixed_line` | POST | طبق مرجع | استعلام قبض تلفن ثابت |
+| قبض همراه اول | `/services/inquiry/bill/mci` | POST | طبق مرجع | استعلام قبض همراه اول |
+| قبض ایرانسل | `/services/inquiry/bill/irancell` | POST | طبق مرجع | استعلام قبض ایرانسل |
+| قبض رایتل | `/services/inquiry/bill/rightel` | POST | طبق مرجع | استعلام قبض رایتل |
+| قبض برق | `/services/inquiry/bill/electricity` | POST | طبق مرجع | استعلام قبض برق |
+| قبض گاز | `/services/inquiry/bill/gas` | POST | طبق مرجع | استعلام قبض گاز |
+| قبض آب | `/services/inquiry/bill/water` | POST | طبق مرجع | استعلام قبض آب |
+
+**نمونهٔ فراخوانی (بدون بدنه):**
+
+```bash
+# قبض تلفن ثابت — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/fixed_line" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض همراه اول — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/mci" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض ایرانسل — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/irancell" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض رایتل — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/rightel" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض برق — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/electricity" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض گاز — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/gas" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# قبض آب — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/water" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+```
 
 !!! note "هدر Host برای خانوادهٔ `/services/`"
 
-    درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن).
-
-## نمونهٔ فراخوانی
-
-```bash
-curl -X POST "http://2.144.22.190:9080/apiir/sw1/GasBill" \
-  -H "apikey: YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"billID":"<شناسهٔ قبض>"}'
-```
+    درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن) — در نمونه‌های بالا لحاظ شده است.
