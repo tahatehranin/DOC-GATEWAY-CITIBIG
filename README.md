@@ -83,16 +83,6 @@ Releases follow [Semantic Versioning](https://semver.org) with `vX.Y.Z` tags.
 
 The release job is idempotent — it skips when the tag already exists.
 
-## GitLab mirror (hamgit.ir)
-
-The `sync-to-gitlab.yml` workflow force-mirrors all branches and tags to `hamgit.ir/tahavey18/DOC-GATEWAY-CITIBIG` on every push.
-
-| Secret | Purpose |
-|---|---|
-| `GITLAB_TOKEN` | Repository access token for hamgit.ir (works over HTTPS — verified) |
-| `GITLAB_SSH_KEY` | Optional fallback: private key of a write-enabled **Deploy Key**; when set, the workflow uses `git@hamgit.ir:…` |
-
-Configure in **Settings → Secrets and variables → Actions**. Manual run: **Actions → Mirror to GitLab → Run workflow**.
 
 ## Adding a documentation page
 
