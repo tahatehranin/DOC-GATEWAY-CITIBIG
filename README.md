@@ -23,7 +23,7 @@
 
 This repository holds the **official documentation portal of CITIBIG API** — a unified API platform for identity, banking, bills, telecom, vehicle, business, location and media services.
 
-- Customer-facing docs: **9 service families, 130+ endpoints**
+- Customer-facing docs: **9 service families, 143 endpoints** (every endpoint with a ready-to-use curl)
 - Formal Persian (RTL) with an English-friendly code layout
 - Corporate theme (navy/crimson palette, Vazirmatn font, bundled locally)
 - Strict build (`mkdocs build --strict`) — broken links fail the build
