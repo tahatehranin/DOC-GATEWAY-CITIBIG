@@ -6,7 +6,7 @@
 
     در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — طبق ستون «ورودی‌های الزامی»، بدنهٔ JSON بعداً به هر کرل اضافه می‌شود.
 
-## خانوادهٔ `/apiir/sw1/`
+## خانوادهٔ api.ir (پیشوند `/apiir/sw1/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -59,7 +59,7 @@ curl -X POST "http://2.144.22.190:9080/apiir/sw1/VideoVerify" -H "apikey: YOUR_A
 curl -X POST "http://2.144.22.190:9080/apiir/sw1/VideoVerifySpeechText" -H "apikey: YOUR_API_KEY"
 ```
 
-## خانوادهٔ `/ehraz/`
+## خانوادهٔ Ehraz (پیشوند `/ehraz/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -92,7 +92,7 @@ curl -X POST "http://2.144.22.190:9080/ehraz/info/sana-status" -H "apikey: YOUR_
 curl -X POST "http://2.144.22.190:9080/ehraz/match/national-with-mobile" -H "apikey: YOUR_API_KEY"
 ```
 
-## خانوادهٔ `/services/`
+## خانوادهٔ زحل (پیشوند `/services/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -129,6 +129,6 @@ curl -X GET "http://2.144.22.190:9080/services/biometric/session/{sessionId}" -H
 
     ترتیب فراخوانی: **آپلود** (`media`) ← **زنده‌بودگی** (`liveness`) ← **نتیجه** (`session result`).
 
-!!! note "هدر Host برای خانوادهٔ `/services/`"
+!!! note "هدر Host برای خانوادهٔ زحل (پیشوند `/services/`)"
 
     درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن) — در نمونه‌های بالا لحاظ شده است.

@@ -6,7 +6,7 @@
 
     در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — طبق ستون «ورودی‌های الزامی»، بدنهٔ JSON بعداً به هر کرل اضافه می‌شود.
 
-## استعلام قبض — خانوادهٔ `/apiir/sw1/`
+## استعلام قبض — خانوادهٔ api.ir (پیشوند `/apiir/sw1/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -39,7 +39,7 @@ curl -X POST "http://2.144.22.190:9080/apiir/sw1/PowerBill" -H "apikey: YOUR_API
 curl -X POST "http://2.144.22.190:9080/apiir/sw1/PowerBillInfo" -H "apikey: YOUR_API_KEY"
 ```
 
-## قبوض تلفن و همراه — خانوادهٔ `/services/inquiry/`
+## قبوض تلفن و همراه — خانوادهٔ زحل (پیشوند `/services/inquiry/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -76,6 +76,6 @@ curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/gas" -H "apikey: YO
 curl -X POST "http://2.144.22.190:9080/services/inquiry/bill/water" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
 ```
 
-!!! note "هدر Host برای خانوادهٔ `/services/`"
+!!! note "هدر Host برای خانوادهٔ زحل (پیشوند `/services/`)"
 
     درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن) — در نمونه‌های بالا لحاظ شده است.

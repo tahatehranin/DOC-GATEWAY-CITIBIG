@@ -15,6 +15,7 @@
 | فیلتر فیلم | `/api/movies/filter` | GET | پارامترهای فیلتر | فهرست فیلم‌ها با ستون‌های پایه |
 | جدیدترین سریال‌ها | `/api/series/recent` | GET | — | ۱۰ قسمت آخر + نام فیلم |
 | جستجوی سریال | `/api/series/search` | GET | `FilmId` | جستجوی قسمت‌های سریال |
+| دسترسی مستقیم داده‌ها | `/mov-svc/*` | GET/POST | مسیر جدول | پروکسی مستقیم به داده‌های رسانه |
 
 **نمونهٔ فراخوانی (بدون بدنه):**
 
@@ -33,6 +34,9 @@ curl -X GET "http://2.144.22.190:9080/api/series/recent" -H "apikey: YOUR_API_KE
 
 # جستجوی سریال — GET
 curl -X GET "http://2.144.22.190:9080/api/series/search" -H "apikey: YOUR_API_KEY"
+
+# دسترسی مستقیم داده‌ها — GET/POST
+curl -X GET "http://2.144.22.190:9080/mov-svc/FilmTbl?select=Id,Name" -H "apikey: YOUR_API_KEY"
 ```
 
 ## سینتکس فیلتر (query string)

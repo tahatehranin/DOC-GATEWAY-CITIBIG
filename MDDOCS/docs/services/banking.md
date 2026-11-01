@@ -6,7 +6,7 @@
 
     در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — طبق ستون «ورودی‌های الزامی»، بدنهٔ JSON بعداً به هر کرل اضافه می‌شود.
 
-## تبدیل و استعلام — خانوادهٔ `/apiir/sw1/`
+## تبدیل و استعلام — خانوادهٔ api.ir (پیشوند `/apiir/sw1/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -75,7 +75,7 @@ curl -X POST "http://2.144.22.190:9080/apiir/sw1/ChequeColor" -H "apikey: YOUR_A
 curl -X POST "http://2.144.22.190:9080/apiir/sw1/ChequeInfo" -H "apikey: YOUR_API_KEY"
 ```
 
-## تبدیل و تطبیق — خانوادهٔ `/ehraz/`
+## تبدیل و تطبیق — خانوادهٔ Ehraz (پیشوند `/ehraz/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -90,6 +90,7 @@ curl -X POST "http://2.144.22.190:9080/apiir/sw1/ChequeInfo" -H "apikey: YOUR_AP
 | نام با کارت | `/ehraz/match/card-with-name` | POST | `cardNumber`، `name` | همخوانی نام با کارت |
 | نام با حساب | `/ehraz/match/deposit-number-with-name` | POST | `bank`، `depositNumber`، `name` | همخوانی نام با حساب |
 | کدملی با کارت | `/ehraz/match/card-with-national` | POST | `cardNumber`، `nationalCode`، `birthDate` | همخوانی کدملی با کارت |
+| کدملی با حساب | `/ehraz/match/deposit-number-with-national` | POST | `bank`، `depositNumber`، `nationalCode`، `birthDate` | همخوانی کدملی با حساب |
 | شبا با شناسهٔ ملی حقوقی | `/ehraz/match/iban-with-legal-national` | POST | `iban`، `legalNationalCode` | تطبیق شبا و شناسهٔ ملی حقوقی |
 | چک صیادی | `/ehraz/info/cheque-info` | POST | `nationalCode`، `sayadId` | استعلام چک صیادی |
 | چک برگشتی — درخواست رمز | `/ehraz/cheque/bounced/otp` | POST | `nationalCode`، `mobileNumber` | دریافت رمز استعلام چک برگشتی |
@@ -131,6 +132,9 @@ curl -X POST "http://2.144.22.190:9080/ehraz/match/deposit-number-with-name" -H 
 # کدملی با کارت — POST
 curl -X POST "http://2.144.22.190:9080/ehraz/match/card-with-national" -H "apikey: YOUR_API_KEY"
 
+# کدملی با حساب — POST
+curl -X POST "http://2.144.22.190:9080/ehraz/match/deposit-number-with-national" -H "apikey: YOUR_API_KEY"
+
 # شبا با شناسهٔ ملی حقوقی — POST
 curl -X POST "http://2.144.22.190:9080/ehraz/match/iban-with-legal-national" -H "apikey: YOUR_API_KEY"
 
@@ -144,7 +148,7 @@ curl -X POST "http://2.144.22.190:9080/ehraz/cheque/bounced/otp" -H "apikey: YOU
 curl -X POST "http://2.144.22.190:9080/ehraz/cheque/bounced/count" -H "apikey: YOUR_API_KEY"
 ```
 
-## استعلام‌های تطبیقی — خانوادهٔ `/services/inquiry/`
+## استعلام‌های تطبیقی — خانوادهٔ زحل (پیشوند `/services/inquiry/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -157,6 +161,12 @@ curl -X POST "http://2.144.22.190:9080/ehraz/cheque/bounced/count" -H "apikey: Y
 | کدملی با کارت | `/services/inquiry/check_card_with_national_code` | POST | طبق مرجع | تطبیق کدملی با کارت |
 | نام با شبا | `/services/inquiry/check_iban_with_name` | POST | طبق مرجع | تطبیق نام با شبا |
 | کدملی با شبا | `/services/inquiry/check_iban_with_national_code` | POST | طبق مرجع | تطبیق کدملی با شبا |
+| چک برگشتی | `/services/inquiry/bounced_cheque` | POST | طبق مرجع | استعلام چک برگشتی |
+| چک صیادی | `/services/inquiry/check_sayad_inquiry` | POST | طبق مرجع | استعلام چک صیادی |
+| چک صیادی — زنجیره‌ای | `/services/inquiry/check_sayad_inquiry/chain` | POST | طبق مرجع | استعلام زنجیره‌ای چک صیادی |
+| اعتباری — ارسال OTP | `/services/inquiry/credit_inquiry/send_otp` | POST | طبق مرجع | ارسال رمز استعلام اعتباری |
+| اعتباری — تأیید OTP | `/services/inquiry/credit_inquiry/verify_otp` | POST | طبق مرجع | تأیید رمز استعلام اعتباری |
+| اعتباری — نتیجه | `/services/inquiry/credit_inquiry/result/*` | GET | شناسهٔ درخواست | دریافت نتیجهٔ استعلام اعتباری |
 
 **نمونهٔ فراخوانی (بدون بدنه):**
 
@@ -187,8 +197,30 @@ curl -X POST "http://2.144.22.190:9080/services/inquiry/check_iban_with_name" -H
 
 # کدملی با شبا — POST
 curl -X POST "http://2.144.22.190:9080/services/inquiry/check_iban_with_national_code" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# چک برگشتی — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/bounced_cheque" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# چک صیادی — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/check_sayad_inquiry" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# چک صیادی — زنجیره‌ای — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/check_sayad_inquiry/chain" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# اعتباری — ارسال OTP — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/credit_inquiry/send_otp" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# اعتباری — تأیید OTP — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/credit_inquiry/verify_otp" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# اعتباری — نتیجه — GET
+curl -X GET "http://2.144.22.190:9080/services/inquiry/credit_inquiry/result/{requestId}" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
 ```
 
-!!! note "هدر Host برای خانوادهٔ `/services/`"
+!!! note "جریان استعلام اعتباری"
+
+    ترتیب فراخوانی: **ارسال OTP** (`send_otp`) ← **تأیید OTP** (`verify_otp`) ← **نتیجه** (`result`).
+
+!!! note "هدر Host برای خانوادهٔ زحل (پیشوند `/services/`)"!!! note "هدر Host برای خانوادهٔ زحل (پیشوند `/services/`)"
 
     درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن) — در نمونه‌های بالا لحاظ شده است.

@@ -6,7 +6,7 @@
 
     در همهٔ نمونه‌ها متد (GET/POST) صریح ذکر شده و **بدنهٔ درخواست (body) عمداً درج نشده است** — طبق ستون «ورودی‌های الزامی»، بدنهٔ JSON بعداً به هر کرل اضافه می‌شود.
 
-## خانوادهٔ `/apiir/sw1/`
+## خانوادهٔ api.ir (پیشوند `/apiir/sw1/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -47,7 +47,7 @@ curl -X POST "http://2.144.22.190:9080/apiir/sw1/MedicalLicense" -H "apikey: YOU
 curl -X POST "http://2.144.22.190:9080/apiir/sw1/Enamad" -H "apikey: YOUR_API_KEY"
 ```
 
-## خانوادهٔ `/ehraz/legal/`
+## خانوادهٔ Ehraz (پیشوند `/ehraz/legal/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
@@ -88,13 +88,14 @@ curl -X POST "http://2.144.22.190:9080/ehraz/legal/sign-holders" -H "apikey: YOU
 curl -X POST "http://2.144.22.190:9080/ehraz/legal/official-gazette" -H "apikey: YOUR_API_KEY"
 ```
 
-## خانوادهٔ `/services/inquiry/`
+## خانوادهٔ زحل (پیشوند `/services/inquiry/`)
 
 | سرویس | مسیر | متد | ورودی‌های الزامی | توضیح |
 |---|---|---|---|---|
 | اطلاعات شرکت | `/services/inquiry/company_inquiry` | POST | طبق مرجع | استعلام اطلاعات شرکت |
 | هیئت مدیره | `/services/inquiry/company_inquiry/board_members` | POST | طبق مرجع | اعضای هیئت‌مدیرهٔ شرکت |
 | تاریخچهٔ هیئت مدیره | `/services/inquiry/company_inquiry/board_members/history` | POST | طبق مرجع | تاریخچهٔ هیئت‌مدیرهٔ شرکت |
+| اینماد | `/services/inquiry/enamad_inquiry` | POST | طبق مرجع | استعلام دارندهٔ اینماد |
 
 **نمونهٔ فراخوانی (بدون بدنه):**
 
@@ -107,8 +108,11 @@ curl -X POST "http://2.144.22.190:9080/services/inquiry/company_inquiry/board_me
 
 # تاریخچهٔ هیئت مدیره — POST
 curl -X POST "http://2.144.22.190:9080/services/inquiry/company_inquiry/board_members/history" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
+
+# اینماد — POST
+curl -X POST "http://2.144.22.190:9080/services/inquiry/enamad_inquiry" -H "apikey: YOUR_API_KEY" -H "Host: service.zohal.io"
 ```
 
-!!! note "هدر Host برای خانوادهٔ `/services/`"
+!!! note "هدر Host برای خانوادهٔ زحل (پیشوند `/services/`)"
 
     درخواست‌های این خانواده باید هدر `Host: service.zohal.io` را نیز داشته باشند (پاسخ 400 بدون آن) — در نمونه‌های بالا لحاظ شده است.
