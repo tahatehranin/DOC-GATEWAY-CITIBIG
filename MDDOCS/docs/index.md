@@ -8,6 +8,7 @@
 
 [:material-rocket-launch: شروع سریع](getting-started.md){ .md-button .md-button--primary }
 [:material-book-open-page-variant: مرجع سرویس‌ها](services/identity.md){ .md-button }
+[:material-api: مرجع تعاملی API](api-reference.html){ .md-button .md-button--primary }
 
 </div>
 

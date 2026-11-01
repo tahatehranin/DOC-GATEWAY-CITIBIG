@@ -1,0 +1,4896 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CITIBIG API",
+    "version": "1.1.0",
+    "description": "پلتفرم یکپارچهٔ سرویس‌های داده و استعلام CITIBIG — ۱۴۳ سرویس در ۹ خانواده.\n\n**احراز هویت:** همهٔ درخواست‌ها هدر `apikey` نیاز دارند.\n\n**قالب پاسخ به تفکیک خانواده:**\n- `/apiir/` (api.ir): wrapper `{data, success, code, message}` — code=0 موفق\n- `/ehraz/` (Ehraz): پاسخ مستقیم؛ خطا `{code, message}`\n- `/services/` (زحل): wrapper `{result, response_body}` — result=1 موفق\n- `/api/` و `/mov-svc/` (رسانه): پاسخ مستقیم JSON"
+  },
+  "servers": [
+    {
+      "url": "http://2.144.22.190:9080",
+      "description": "CITIBIG Gateway"
+    }
+  ],
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "apikey"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "هویتی"
+    },
+    {
+      "name": "بانکی"
+    },
+    {
+      "name": "قبوض"
+    },
+    {
+      "name": "مخابرات"
+    },
+    {
+      "name": "خودرو"
+    },
+    {
+      "name": "کسب‌وکار"
+    },
+    {
+      "name": "مکان"
+    },
+    {
+      "name": "رسانه"
+    },
+    {
+      "name": "ابزارها"
+    }
+  ],
+  "paths": {
+    "/apiir/sw1/Shahkar": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "شاهکار",
+        "description": "تطبیق موبایل با کد ملی",
+        "operationId": "apiir_sw1_Shahkar_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "isCompany": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile",
+                  "isCompany"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ShahkarLite": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "شاهکار Lite",
+        "description": "تطبیق موبایل با کد ملی — نسخهٔ سبک",
+        "operationId": "apiir_sw1_ShahkarLite_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ShahkarPro": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "شاهکار Pro",
+        "description": "تطبیق موبایل با کد ملی — نسخهٔ کامل",
+        "operationId": "apiir_sw1_ShahkarPro_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "isCompany": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile",
+                  "isCompany"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PersonInfo": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "مشخصات هویتی",
+        "description": "استعلام مشخصات هویتی",
+        "operationId": "apiir_sw1_PersonInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PersonData": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "مشخصات هویتی ۲",
+        "description": "استعلام مشخصات هویتی — نسخهٔ ۲",
+        "operationId": "apiir_sw1_PersonData_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/Sana": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "ثنا",
+        "description": "استعلام وضعیت ثنا",
+        "operationId": "apiir_sw1_Sana_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "isCompany": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "isCompany"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/MilitaryStatus": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "نظام وظیفه",
+        "description": "استعلام وضعیت خدمت سربازی",
+        "operationId": "apiir_sw1_MilitaryStatus_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/NationalityStatus": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "اتباع",
+        "description": "استعلام وضعیت اتباع",
+        "operationId": "apiir_sw1_NationalityStatus_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "codeType": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code",
+                  "codeType"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PassportStatus": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "پاسپورت",
+        "description": "استعلام وضعیت پاسپورت",
+        "operationId": "apiir_sw1_PassportStatus_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/VideoVerify": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "احراز ویدئویی",
+        "description": "احراز هویت ویدئویی بایومتریک",
+        "operationId": "apiir_sw1_VideoVerify_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "serialNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "videoBase64": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "speechText`  آستانه‌های": {
+                    "type": "string",
+                    "description": "اختیاری"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate",
+                  "serialNumber",
+                  "videoBase64",
+                  "speechText`  آستانه‌های"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/VideoVerifySpeechText": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "VideoVerifySpeechText",
+        "description": "متن گفتار احراز ویدئویی",
+        "operationId": "apiir_sw1_VideoVerifySpeechText_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        }
+      }
+    },
+    "/ehraz/info/identity-info": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "ثبت احوال کامل",
+        "description": "استعلام کامل مشخصات هویتی",
+        "operationId": "ehraz_info_identity_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/identity-similarity": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "ثبت احوال مقایسه‌ای",
+        "description": "تطبیق هویتی مقایسه‌ای",
+        "operationId": "ehraz_info_identity_similarity_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "fatherName": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate",
+                  "firstName",
+                  "lastName",
+                  "fullName",
+                  "fatherName"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/foreigner-identity-info": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "اتباع خارجی",
+        "description": "استعلام اطلاعات اتباع خارجی",
+        "operationId": "ehraz_info_foreigner_identity_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fida": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "fida"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/military-service-status": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "نظام وظیفه",
+        "description": "استعلام وضعیت نظام وظیفه",
+        "operationId": "ehraz_info_military_service_status_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/sana-status": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "ثنا",
+        "description": "استعلام وضعیت ثنا",
+        "operationId": "ehraz_info_sana_status_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobileNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/national-with-mobile": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "شاهکار",
+        "description": "تطبیق موبایل با کدملی",
+        "operationId": "ehraz_match_national_with_mobile_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobileNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/shahkar": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "شاهکار (زحل)",
+        "description": "تطبیق موبایل با کدملی",
+        "operationId": "services_inquiry_shahkar_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/national_identity_inquiry": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "هویتی (ثبت احوال) (زحل)",
+        "description": "استعلام مشخصات هویتی",
+        "operationId": "services_inquiry_national_identity_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/national_card_ocr": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "OCR کارت ملی (زحل)",
+        "description": "استخراج اطلاعات کارت ملی از تصویر",
+        "operationId": "services_inquiry_national_card_ocr_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/biometric/media": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "احراز ویدئویی — آپلود (زحل)",
+        "description": "آپلود مدارک احراز هویت ویدئویی",
+        "operationId": "services_biometric_media_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "media": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "media"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/biometric/session/liveness": {
+      "post": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "احراز ویدئویی — زنده‌بودگی (زحل)",
+        "description": "بررسی زنده‌بودگی (Liveness)",
+        "operationId": "services_biometric_session_liveness_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        }
+      }
+    },
+    "/services/biometric/session/{id}": {
+      "get": {
+        "tags": [
+          "هویتی"
+        ],
+        "summary": "احراز ویدئویی — نتیجه (زحل)",
+        "description": "دریافت نتیجهٔ جلسه",
+        "operationId": "services_biometric_session_id_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "شناسه/مسیر مقصد"
+          }
+        ]
+      }
+    },
+    "/apiir/sw1/CardMatch": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "تطبیق کد ملی با کارت",
+        "description": "تطبیق کد ملی با کارت بانکی",
+        "operationId": "apiir_sw1_CardMatch_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate",
+                  "cardNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CardMobileMatch": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "تطبیق کارت با موبایل",
+        "description": "تطبیق کارت با موبایل",
+        "operationId": "apiir_sw1_CardMobileMatch_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "mobile",
+                  "cardNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IbanMatch": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "تطبیق کد ملی با شبا",
+        "description": "تطبیق کد ملی با شبا",
+        "operationId": "apiir_sw1_IbanMatch_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "birthDate",
+                  "iban"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IbanMatchPro": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "تطبیق کد ملی با شبا Pro",
+        "description": "تطبیق کد ملی با شبا (سیاح)",
+        "operationId": "apiir_sw1_IbanMatchPro_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "iban"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CardInfo": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام مالک کارت",
+        "description": "استعلام نام مالک کارت بانکی",
+        "operationId": "apiir_sw1_CardInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "cardNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CardToIban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کارت به شبا",
+        "description": "تبدیل کارت به شبا",
+        "operationId": "apiir_sw1_CardToIban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "cardNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IbanInfo": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام مالک شبا",
+        "description": "استعلام نام دارندهٔ شبا",
+        "operationId": "apiir_sw1_IbanInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "iban"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/BankAccountInfo": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "شبا با شمارهٔ حساب",
+        "description": "استعلام شبا با شمارهٔ حساب",
+        "operationId": "apiir_sw1_BankAccountInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "accountNumber` `bankCode": {
+                    "type": "string",
+                    "description": "اختیاری"
+                  }
+                },
+                "required": [
+                  "accountNumber` `bankCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/BankCardInfo": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "مشخصات کارت",
+        "description": "استعلام مشخصات کارت بانکی",
+        "operationId": "apiir_sw1_BankCardInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "cardNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ActiveLoans": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "تسهیلات فعال",
+        "description": "استعلام تسهیلات فعال بانکی",
+        "operationId": "apiir_sw1_ActiveLoans_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/UnpaidCheque": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی",
+        "description": "استعلام تعداد چک برگشتی",
+        "operationId": "apiir_sw1_UnpaidCheque_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/UnpaidChequeLite": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی Lite",
+        "description": "استعلام تعداد چک برگشتی — نسخهٔ سبک",
+        "operationId": "apiir_sw1_UnpaidChequeLite_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/UnpaidChequePro": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی Pro",
+        "description": "استعلام تعداد چک برگشتی — نسخهٔ کامل",
+        "operationId": "apiir_sw1_UnpaidChequePro_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ChequeColor": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "رنگ چک صیادی",
+        "description": "استعلام رنگ چک صیادی",
+        "operationId": "apiir_sw1_ChequeColor_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "isCompany": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "isCompany"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ChequeInfo": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "مشخصات چک صیادی",
+        "description": "استعلام مشخصات چک صیادی",
+        "operationId": "apiir_sw1_ChequeInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chequeID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "chequeID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/account/wallet-balance": {
+      "get": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "موجودی کیف پول",
+        "description": "موجودی کیف پول",
+        "operationId": "ehraz_account_wallet_balance_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        }
+      }
+    },
+    "/ehraz/convert/deposit-number-to-iban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "حساب به شبا",
+        "description": "تبدیل شماره حساب به شبا",
+        "operationId": "ehraz_convert_deposit_number_to_iban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bank": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "bank",
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/iban-info": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "استعلام شبا",
+        "description": "استعلام شبا",
+        "operationId": "ehraz_info_iban_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/card-info": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "استعلام کارت",
+        "description": "استعلام کارت",
+        "operationId": "ehraz_info_card_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/convert/card-to-deposit-number": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کارت به حساب",
+        "description": "تبدیل کارت به حساب",
+        "operationId": "ehraz_convert_card_to_deposit_number_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/convert/card-to-iban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کارت به شبا",
+        "description": "تبدیل کارت به شبا",
+        "operationId": "ehraz_convert_card_to_iban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/iban-with-national": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کدملی با شبا",
+        "description": "همخوانی کدملی با شبا",
+        "operationId": "ehraz_match_iban_with_national_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "iban",
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/iban-with-name": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام با شبا",
+        "description": "همخوانی نام با شبا",
+        "operationId": "ehraz_match_iban_with_name_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "iban",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/card-with-name": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام با کارت",
+        "description": "همخوانی نام با کارت",
+        "operationId": "ehraz_match_card_with_name_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "cardNumber",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/deposit-number-with-name": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام با حساب",
+        "description": "همخوانی نام با حساب",
+        "operationId": "ehraz_match_deposit_number_with_name_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bank": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "depositNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "bank",
+                  "depositNumber",
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/card-with-national": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کدملی با کارت",
+        "description": "همخوانی کدملی با کارت",
+        "operationId": "ehraz_match_card_with_national_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "cardNumber",
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/deposit-number-with-national": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کدملی با حساب",
+        "description": "همخوانی کدملی با حساب",
+        "operationId": "ehraz_match_deposit_number_with_national_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bank": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "depositNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "birthDate": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "bank",
+                  "depositNumber",
+                  "nationalCode",
+                  "birthDate"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/match/iban-with-legal-national": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "شبا با شناسهٔ ملی حقوقی",
+        "description": "تطبیق شبا و شناسهٔ ملی حقوقی",
+        "operationId": "ehraz_match_iban_with_legal_national_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "iban": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "legalNationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "iban",
+                  "legalNationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/cheque-info": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک صیادی",
+        "description": "استعلام چک صیادی",
+        "operationId": "ehraz_info_cheque_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "sayadId": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "sayadId"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/cheque/bounced/otp": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی — درخواست رمز",
+        "description": "دریافت رمز استعلام چک برگشتی",
+        "operationId": "ehraz_cheque_bounced_otp_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobileNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/cheque/bounced/count": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی — استعلام",
+        "description": "تعداد چک‌های برگشتی (پس از دریافت رمز)",
+        "operationId": "ehraz_cheque_bounced_count_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobileNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "otpCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "referenceCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobileNumber",
+                  "otpCode",
+                  "referenceCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/account_to_iban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "حساب به شبا (زحل)",
+        "description": "تبدیل شماره حساب به شبا",
+        "operationId": "services_inquiry_account_to_iban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/card_to_account": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کارت به حساب (زحل)",
+        "description": "تبدیل کارت به حساب",
+        "operationId": "services_inquiry_card_to_account_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/card_to_iban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کارت به شبا (زحل)",
+        "description": "تبدیل کارت به شبا",
+        "operationId": "services_inquiry_card_to_iban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/iban": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "استعلام شبا (زحل)",
+        "description": "استعلام اطلاعات شبا",
+        "operationId": "services_inquiry_iban_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/card_inquiry": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "استعلام کارت (زحل)",
+        "description": "استعلام کارت بانکی",
+        "operationId": "services_inquiry_card_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_card_with_name": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام با کارت (زحل)",
+        "description": "تطبیق نام با کارت",
+        "operationId": "services_inquiry_check_card_with_name_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_card_with_national_code": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کدملی با کارت (زحل)",
+        "description": "تطبیق کدملی با کارت",
+        "operationId": "services_inquiry_check_card_with_national_code_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_iban_with_name": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "نام با شبا (زحل)",
+        "description": "تطبیق نام با شبا",
+        "operationId": "services_inquiry_check_iban_with_name_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_iban_with_national_code": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "کدملی با شبا (زحل)",
+        "description": "تطبیق کدملی با شبا",
+        "operationId": "services_inquiry_check_iban_with_national_code_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bounced_cheque": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک برگشتی (زحل)",
+        "description": "استعلام چک برگشتی",
+        "operationId": "services_inquiry_bounced_cheque_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_sayad_inquiry": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک صیادی (زحل)",
+        "description": "استعلام چک صیادی",
+        "operationId": "services_inquiry_check_sayad_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/check_sayad_inquiry/chain": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "چک صیادی — زنجیره‌ای (زحل)",
+        "description": "استعلام زنجیره‌ای چک صیادی",
+        "operationId": "services_inquiry_check_sayad_inquiry_chain_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/credit_inquiry/send_otp": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "اعتباری — ارسال OTP (زحل)",
+        "description": "ارسال رمز استعلام اعتباری",
+        "operationId": "services_inquiry_credit_inquiry_send_otp_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/credit_inquiry/verify_otp": {
+      "post": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "اعتباری — تأیید OTP (زحل)",
+        "description": "تأیید رمز استعلام اعتباری",
+        "operationId": "services_inquiry_credit_inquiry_verify_otp_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/credit_inquiry/result/{id}": {
+      "get": {
+        "tags": [
+          "بانکی"
+        ],
+        "summary": "اعتباری — نتیجه (زحل)",
+        "description": "دریافت نتیجهٔ استعلام اعتباری",
+        "operationId": "services_inquiry_credit_inquiry_result_id_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "شناسه/مسیر مقصد"
+          }
+        ]
+      }
+    },
+    "/apiir/sw1/WatterBill": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض آب",
+        "description": "استعلام قبض آب",
+        "operationId": "apiir_sw1_WatterBill_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/WatterBillInfo": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض آب با جزئیات",
+        "description": "استعلام قبض آب با جزئیات کامل",
+        "operationId": "apiir_sw1_WatterBillInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/GasBill": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض گاز",
+        "description": "استعلام قبض گاز",
+        "operationId": "apiir_sw1_GasBill_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/GasBillInfo": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض گاز با جزئیات",
+        "description": "استعلام قبض گاز با جزئیات کامل",
+        "operationId": "apiir_sw1_GasBillInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PowerBill": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض برق",
+        "description": "استعلام قبض برق",
+        "operationId": "apiir_sw1_PowerBill_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PowerBillInfo": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض برق با جزئیات",
+        "description": "استعلام قبض برق با جزئیات کامل",
+        "operationId": "apiir_sw1_PowerBillInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "billID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "billID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/fixed_line": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض تلفن ثابت (زحل)",
+        "description": "استعلام قبض تلفن ثابت",
+        "operationId": "services_inquiry_bill_fixed_line_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/mci": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض همراه اول (زحل)",
+        "description": "استعلام قبض همراه اول",
+        "operationId": "services_inquiry_bill_mci_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/irancell": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض ایرانسل (زحل)",
+        "description": "استعلام قبض ایرانسل",
+        "operationId": "services_inquiry_bill_irancell_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/rightel": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض رایتل (زحل)",
+        "description": "استعلام قبض رایتل",
+        "operationId": "services_inquiry_bill_rightel_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/electricity": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض برق (زحل)",
+        "description": "استعلام قبض برق",
+        "operationId": "services_inquiry_bill_electricity_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/gas": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض گاز (زحل)",
+        "description": "استعلام قبض گاز",
+        "operationId": "services_inquiry_bill_gas_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/bill/water": {
+      "post": {
+        "tags": [
+          "قبوض"
+        ],
+        "summary": "قبض آب (زحل)",
+        "description": "استعلام قبض آب",
+        "operationId": "services_inquiry_bill_water_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/SmsOTP": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "OTP پیامکی",
+        "description": "ارسال رمز یکبار مصرف پیامکی",
+        "operationId": "apiir_sw1_SmsOTP_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile` `template": {
+                    "type": "string",
+                    "description": "اختیاری"
+                  }
+                },
+                "required": [
+                  "code",
+                  "mobile` `template"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CallOTP": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "OTP صوتی",
+        "description": "ارسال رمز یکبار مصرف با تماس تلفنی",
+        "operationId": "apiir_sw1_CallOTP_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code",
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CallOTPalt": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "OTP صوتی (alt)",
+        "description": "OTP تلفنی — مسیر جایگزین",
+        "operationId": "apiir_sw1_CallOTPalt_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "number": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code",
+                  "number"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/Call": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "تماس تلفنی",
+        "description": "پخش پیام صوتی روی شماره‌ها",
+        "operationId": "apiir_sw1_Call_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "voiceID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "numbers": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "voiceID",
+                  "numbers"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/SendSms": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "ارسال پیامک",
+        "description": "ارسال پیامک خدماتی گروهی",
+        "operationId": "apiir_sw1_SendSms_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobiles": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "message",
+                  "mobiles"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/TextToSpeech": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "متن به گفتار",
+        "description": "تبدیل متن به صوت با هوش مصنوعی بومی",
+        "operationId": "apiir_sw1_TextToSpeech_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "male": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "ttsEngine": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "text",
+                  "male",
+                  "ttsEngine"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/voice_otp": {
+      "post": {
+        "tags": [
+          "مخابرات"
+        ],
+        "summary": "OTP صوتی (زحل)",
+        "description": "ارسال رمز یکبار مصرف با تماس صوتی",
+        "operationId": "services_inquiry_voice_otp_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ActivePlates": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "پلاک‌های فعال",
+        "description": "استعلام پلاک‌های فعال",
+        "operationId": "apiir_sw1_ActivePlates_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PlateHistory": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "تاریخچهٔ پلاک",
+        "description": "استعلام تاریخچهٔ پلاک",
+        "operationId": "apiir_sw1_PlateHistory_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "plateNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/VehicleCard": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "کارت و سند خودرو",
+        "description": "استعلام کارت و سند خودرو",
+        "operationId": "apiir_sw1_VehicleCard_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "plateNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/VehicleInfo": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "مشخصات خودرو",
+        "description": "استعلام مشخصات و مدل خودرو",
+        "operationId": "apiir_sw1_VehicleInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "plateNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/VehicleViolation": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "خلافی خودرو",
+        "description": "استعلام خلافی خودرو",
+        "operationId": "apiir_sw1_VehicleViolation_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "plateNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile",
+                  "plateNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/DrivingLicense": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "گواهینامهٔ جدید",
+        "description": "استعلام گواهینامهٔ رانندگی جدید",
+        "operationId": "apiir_sw1_DrivingLicense_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/DrivingLisense": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "گواهینامهٔ قدیم",
+        "description": "استعلام گواهینامهٔ رانندگی قدیم",
+        "operationId": "apiir_sw1_DrivingLisense_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/DrivingScore": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "نمرهٔ منفی",
+        "description": "استعلام نمرهٔ منفی گواهینامه",
+        "operationId": "apiir_sw1_DrivingScore_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "licenseNumber": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode",
+                  "mobile",
+                  "licenseNumber"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/vehicle_inquiry/total_violations": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "خلافی — مجموع (زحل)",
+        "description": "استعلام مجموع خلافی خودرو",
+        "operationId": "services_inquiry_vehicle_inquiry_total_violations_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/vehicle_inquiry/violations_details": {
+      "post": {
+        "tags": [
+          "خودرو"
+        ],
+        "summary": "خلافی — جزئیات (زحل)",
+        "description": "استعلام جزئیات خلافی خودرو",
+        "operationId": "services_inquiry_vehicle_inquiry_violations_details_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CompanyInfo": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اطلاعات شرکت",
+        "description": "استعلام شخص حقوقی",
+        "operationId": "apiir_sw1_CompanyInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CompanyMembers": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "هیئت مدیره",
+        "description": "استعلام اعضای هیئت‌مدیره",
+        "operationId": "apiir_sw1_CompanyMembers_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CompanyNewspapers": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "روزنامهٔ رسمی",
+        "description": "استعلام آگهی‌های روزنامهٔ رسمی",
+        "operationId": "apiir_sw1_CompanyNewspapers_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/CompanySignatories": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "امضاداران",
+        "description": "استعلام صاحبین حق امضا",
+        "operationId": "apiir_sw1_CompanySignatories_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalID": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalID"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/TaxRecords": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "پروندهٔ مالیاتی",
+        "description": "استعلام پرونده‌های مالیاتی",
+        "operationId": "apiir_sw1_TaxRecords_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "inquiryCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "inquiryCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/License": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "مجوز شغلی",
+        "description": "استعلام اعتبار مجوز شغلی",
+        "operationId": "apiir_sw1_License_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trackingCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "trackingCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/MedicalLicense": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "پروانهٔ پزشکی",
+        "description": "استعلام اعتبار پروانهٔ پزشکی",
+        "operationId": "apiir_sw1_MedicalLicense_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "medicalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "medicalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/Enamad": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اینماد",
+        "description": "استعلام دارندهٔ اینماد",
+        "operationId": "apiir_sw1_Enamad_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "domain"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/company-info": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اطلاعات حقوقی",
+        "description": "اطلاعات حقوقی شرکت",
+        "operationId": "ehraz_legal_company_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/certificates": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "مجوزهای شرکت",
+        "description": "مجوزهای شرکت",
+        "operationId": "ehraz_legal_certificates_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/parents": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "شرکت مادر",
+        "description": "شرکت‌های مادر",
+        "operationId": "ehraz_legal_parents_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/children": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "زیرمجموعه‌ها",
+        "description": "شرکت‌های زیرمجموعه",
+        "operationId": "ehraz_legal_children_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/ceo": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "مدیرعامل",
+        "description": "مدیرعامل شرکت",
+        "operationId": "ehraz_legal_ceo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/members": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اعضا",
+        "description": "اعضای شرکت",
+        "operationId": "ehraz_legal_members_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/sign-holders": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "امضاداران",
+        "description": "امضاداران شرکت",
+        "operationId": "ehraz_legal_sign_holders_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/legal/official-gazette": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "روزنامهٔ رسمی",
+        "description": "آگهی‌های روزنامهٔ رسمی شرکت",
+        "operationId": "ehraz_legal_official_gazette_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nationalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "nationalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/company_inquiry": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اطلاعات شرکت (زحل)",
+        "description": "استعلام اطلاعات شرکت",
+        "operationId": "services_inquiry_company_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/company_inquiry/board_members": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "هیئت مدیره (زحل)",
+        "description": "اعضای هیئت‌مدیرهٔ شرکت",
+        "operationId": "services_inquiry_company_inquiry_board_members_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/company_inquiry/board_members/history": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "تاریخچهٔ هیئت مدیره (زحل)",
+        "description": "تاریخچهٔ هیئت‌مدیرهٔ شرکت",
+        "operationId": "services_inquiry_company_inquiry_board_members_history_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/enamad_inquiry": {
+      "post": {
+        "tags": [
+          "کسب‌وکار"
+        ],
+        "summary": "اینماد (زحل)",
+        "description": "استعلام دارندهٔ اینماد",
+        "operationId": "services_inquiry_enamad_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PostalCodeInfo": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "کدپستی",
+        "description": "استعلام کدپستی",
+        "operationId": "apiir_sw1_PostalCodeInfo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "postalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "postalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PostalCodePro": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "کدپستی Pro",
+        "description": "استعلام کدپستی — نسخهٔ کامل",
+        "operationId": "apiir_sw1_PostalCodePro_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "postalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "postalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PostalTracking": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "رهیگیری مرسوله",
+        "description": "رهیگیری بستهٔ پستی",
+        "operationId": "apiir_sw1_PostalTracking_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "trackingCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "trackingCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/PostalCodeLocation": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "لوکیشن کدپستی",
+        "description": "دریافت لوکیشن با کدپستی",
+        "operationId": "apiir_sw1_PostalCodeLocation_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "postalCode": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "postalCode"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/GeoToAddress": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "آدرس از مختصات",
+        "description": "تبدیل مختصات به آدرس",
+        "operationId": "apiir_sw1_GeoToAddress_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "latitude",
+                  "longitude"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IPLocation": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "موقعیت IP",
+        "description": "تشخیص موقعیت IP",
+        "operationId": "apiir_sw1_IPLocation_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ip": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "ip"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IPIsIran": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "IP ایرانی",
+        "description": "تشخیص IP ایرانی",
+        "operationId": "apiir_sw1_IPIsIran_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ip": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "ip"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/MyIP": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "MyIP",
+        "description": "دریافت IP کلاینت",
+        "operationId": "apiir_sw1_MyIP_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        }
+      }
+    },
+    "/ehraz/info/address-info": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "کدپستی",
+        "description": "استعلام کدپستی",
+        "operationId": "ehraz_info_address_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/postal-coordinates": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "مختصات کدپستی",
+        "description": "استعلام مختصات کدپستی",
+        "operationId": "ehraz_info_postal_coordinates_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ehraz/info/corporation-identity-info": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "اطلاعات صنفی",
+        "description": "استعلام اطلاعات صنفی",
+        "operationId": "ehraz_info_corporation_identity_info_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم آبجکت داده؛ خطا: {\"code\":\"...\",\"message\":\"...\"}"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/postal_code_inquiry": {
+      "post": {
+        "tags": [
+          "مکان"
+        ],
+        "summary": "کدپستی (زحل)",
+        "description": "استعلام کدپستی",
+        "operationId": "services_inquiry_postal_code_inquiry_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/movies/recent": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "جدیدترین فیلم‌ها",
+        "description": "۱۰ فیلم آخر",
+        "operationId": "api_movies_recent_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        }
+      }
+    },
+    "/api/movies/search": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "جستجوی فیلم",
+        "description": "جستجو با فیلترهای پیشرفته — پارامترهای فیلتر با query string (مثال: ?Name=ilike.*x*&limit=10&order=Id.desc).",
+        "operationId": "api_movies_search_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        }
+      }
+    },
+    "/api/movies/filter": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "فیلتر فیلم",
+        "description": "فهرست فیلم‌ها با ستون‌های پایه — پارامترهای فیلتر با query string (مثال: ?Name=ilike.*x*&limit=10&order=Id.desc).",
+        "operationId": "api_movies_filter_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        }
+      }
+    },
+    "/api/series/recent": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "جدیدترین سریال‌ها",
+        "description": "۱۰ قسمت آخر + نام فیلم",
+        "operationId": "api_series_recent_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        }
+      }
+    },
+    "/api/series/search": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "جستجوی سریال",
+        "description": "جستجوی قسمت‌های سریال",
+        "operationId": "api_series_search_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        }
+      }
+    },
+    "/mov-svc/{path}": {
+      "get": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "دسترسی مستقیم داده‌ها",
+        "description": "پروکسی مستقیم به داده‌های رسانه",
+        "operationId": "mov_svc_path_get",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        },
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "شناسه/مسیر مقصد"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "رسانه"
+        ],
+        "summary": "دسترسی مستقیم داده‌ها",
+        "description": "پروکسی مستقیم به داده‌های رسانه",
+        "operationId": "mov_svc_path_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ مستقیم JSON"
+          }
+        },
+        "parameters": [
+          {
+            "name": "path",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "شناسه/مسیر مقصد"
+          }
+        ]
+      }
+    },
+    "/apiir/sw1/CheckEmail": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "اعتبارسنجی ایمیل",
+        "description": "اعتبارسنجی ایمیل",
+        "operationId": "apiir_sw1_CheckEmail_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/IsHoliday": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "تعطیلی امروز",
+        "description": "استعلام تعطیلی امروز",
+        "operationId": "apiir_sw1_IsHoliday_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "weekend` (": {
+                    "type": "string",
+                    "description": "اختیاری"
+                  }
+                },
+                "required": [
+                  "weekend` ("
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/sw1/Wallpaper": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "پس‌زمینهٔ پویا",
+        "description": "دریافت تصویر پس‌زمینهٔ پویا",
+        "operationId": "apiir_sw1_Wallpaper_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        }
+      }
+    },
+    "/apiir/sw1/ChatGPT": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "ChatGPT",
+        "description": "سرویس هوش مصنوعی گفتگو",
+        "operationId": "apiir_sw1_ChatGPT_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string",
+                    "description": "الزامی"
+                  },
+                  "data` `temperature": {
+                    "type": "string",
+                    "description": "اختیاری"
+                  }
+                },
+                "required": [
+                  "command",
+                  "data` `temperature"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/services/inquiry/persian_to_finglish": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "فارسی به فینگلیش (زحل)",
+        "description": "تبدیل متن فارسی به فینگلیش",
+        "operationId": "services_inquiry_persian_to_finglish_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"result\":1,\"response_body\":{...}} — result=1 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "TODO": "فیلدهای ورودی طبق مستندات سرویس"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apiir/Sandbox/Echo": {
+      "post": {
+        "tags": [
+          "ابزارها"
+        ],
+        "summary": "Echo",
+        "description": "تست اتصال و سلامت کلید",
+        "operationId": "apiir_Sandbox_Echo_post",
+        "responses": {
+          "200": {
+            "description": "پاسخ wrapper: {\"data\":{...},\"success\":true,\"code\":0,\"message\":\"...\"} — code=0 یعنی موفق"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "الزامی"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
